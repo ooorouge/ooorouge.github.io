@@ -1,3 +1,7 @@
+# large dataset -- changed by Flora
+*.xml
+PostDataProcessing.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
