@@ -4,4 +4,4 @@ The top200Tag20**.json counts the first 200 most frequent tags and their frequen
 
 The totalPostCountPerMonth is the number of posts counted for each year from 2008-07, when the first posts was recorded in the dataset, to 2020-09, when the last posts was recorded in the dataset by the time we cleaned the data.
 
-monthlyCountPerTag.csv counts the frequency of tags that, according to tag.xml file posted by the stackoverflow, have total counts that are greater than 1000. This can help us reduce the number of tags from 150000+ to about 4786. 
+monthlyCountPerTag.csv counts the monthly frequency of tags that in the joint set of the 200 most popular tags each year from 2008 to 2020, inclusive.
