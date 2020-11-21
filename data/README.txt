@@ -1,0 +1,1 @@
+The com20**.json contains the first 70 most frequent tags used in that year and the combination among them. The format is basically designed for a https://observablehq.com/@d3/hierarchical-edge-bundling. The target and source do not means directions, just means there is a link between the two node.
