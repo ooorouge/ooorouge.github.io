@@ -17,6 +17,7 @@
 /*}*/
 
 /*#header {*/
+
 /*    color: white;*/
 /*    font-size: 30px;*/
 /*    position: fixed;*/
@@ -63,7 +64,7 @@ li {
 
 a {
     padding: 20px;
-    width: 140px;
+    width: 160px;
     display: block;
     text-decoration: none;
     color: #fff;
@@ -97,13 +98,13 @@ a {
     width: 100%;
 }
 
-h1 {
-    margin: 100px;
-    text-align: center;
-    padding: 0;
-    display: inline;
+/*h1 {*/
+/*    !*margin: 100px;*!*/
+/*    text-align: center;*/
+/*    padding: 0;*/
+/*    display: inline;*/
 
-}
+/*}*/
 
 
 
@@ -139,7 +140,7 @@ h1 {
 .description {
     /*display: inline;*/
     float: right;
-    width: 500px;
+    width: 30%;
     height: 100%;
     background: orange;
     opacity: 50%;
@@ -156,22 +157,105 @@ h1 {
 
     left: 0;
     right: 500px;
-    top: 150px;
+    top: 60px;
     bottom: 150px;
     width: 1000px;
-    height: 800px;
+    /*width: 70%;*/
+    height: 900px;
     /*background-color: mediumpurple;*/
     display: none;
+    z-index: -1;
     /*top: 250px;*/
 }
 
 #map.show {
     display: block;
+    transition-duration: 0.5s;
 }
 
 
 .blank {
     visibility: hidden;
     height: 50px;
+}
+
+#growth {
+    float: left;
+    width: 500px;
+    height: 270px;
+}
+
+#top-user{
+    float: right;
+    width: 500px;
+    height: 270px;
+}
+
+#geomap {
+    /*margin-bottom: 30px;*/
+}
+
+#posts {
+    background-color: white;
+}
+
+#posts-title {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+
+#tags {
+    float: left;
+    width: 640px;
+    height: 640px;
+}
+
+#combinations {
+    float: right;
+    /*width: 640px;*/
+    height: 640px;
+}
+
+#numbers {
+    display: block;
+    margin-left: 400px;
+}
+
+#tags-area {
+    display: block;
+}
+
+#trends {
+    margin-left: 0;
+    /*display: inline;*/
+    /*text-align: left;*/
+
+}
+
+#year-text {
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
+#slider-area {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 30px;
+}
+
+#year-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 20px;
+    opacity: 70%;
+    outline: none;
+    background: #d3d3d3;
+}
+
+.year-middle {
+    display: table-cell;
+    width: 100px;
+    text-align: center;
 }
 

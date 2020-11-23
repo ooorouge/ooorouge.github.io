@@ -4,7 +4,7 @@ $(".description").height($(window).height()-50);
 var width = 1000;
 var height = 600;
 
-var svg = d3.select("#map").append("svg")
+var svg = d3.select("#geomap").append("svg")
 .attr("width", width)
 .attr("height", height)
 
@@ -27,6 +27,8 @@ d3.json("data/world-110m.json").then(data => {
         .append("path")
         .attr("d", path);
 
+    d3.select("#growth").append("img").attr("src", "images/usergrowth.png").attr("width", 500).attr("height", 270);
+    d3.select("#top-user").append("img").attr("src", "images/topusers.png").attr("width", 500).attr("height", 270);
 
 
     $(document).ready(function() {
