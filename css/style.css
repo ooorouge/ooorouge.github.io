@@ -52,9 +52,10 @@ nav {
     top: 0;
 }
 
-ul {
+nav ul {
     padding: 0;
     margin: 0;
+    margin-left: 5vw;
     list-style: none;
 }
 
@@ -62,19 +63,82 @@ li {
     float: left;
 }
 
-a {
+li a {
     padding: 20px;
     width: 160px;
     display: block;
     text-decoration: none;
+    text-align: center;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
 }
 
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#back-to-top-button {
+    display: inline-block;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border:  2px dotted rgb(1, 35, 69);
+    border-radius: 5px;
+    position: fixed;
+    bottom: 350px;
+    left: 50px;
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 3;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+#back-to-top-button:hover {
+    cursor: pointer;
+    background-color: rgb(70, 146, 222);
+    opacity: 0.5;
+}
+
+#back-to-top-button:active {
+    background-color: transparent;
+}
+
+#back-to-top-button.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.icon-arrow-up {
+    color: rgb(1, 35, 69);
+    vertical-align: middle;
+    font-size: 40px;
+}
+
 #cover {
     /*height: 700px;*/
-    background-image: url("../images/cover.jpeg");
+    z-index: 2;
+    height: 100vh;
     display: inline-block;
     width: 100%;
 }
@@ -106,7 +170,14 @@ a {
 
 /*}*/
 
+#nav-title {
+    display: inline-block;
+    transition: color 0.5s ease-out;
+}
 
+.animated-title {
+    transition: all 0.5s ease-in-out;
+}
 
 .section-title {
     font-size: 50px;
@@ -124,6 +195,8 @@ a {
 }
 
 #project-title {
+    opacity: 1;
+    transform: scale(1);
     font-size: 80px;
     color: white;
     text-align: center;

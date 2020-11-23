@@ -5,19 +5,24 @@
     <title>Evolution of Stack Overflow</title>
 <!--    <link rel="stylesheet" href="css/bootstrap.css">-->
     <link rel="stylesheet" href="css/style.css">
+    <!-- They are not bootstrap but just icon library -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
 
     <nav>
         <ul>
-            <li><a href="#first-blank">Back to Top</a></li>
-            <li><a href="#user-2015">About users</a></li>
+            <li><a href="#first-blank"><span id="nav-title">E</span>volution of</a></li>
+            <li><a href="#user-2015">users</a></li>
             <!--            <li><a href="#user-2016">2016</a></li>-->
             <!--            <li><a href="#user-2017">2017</a></li>-->
             <!--            <li><a href="#user-2018">2018</a></li>-->
             <!--            <li><a href="#user-2019">2019</a></li>-->
             <!--            <li><a href="#user-2020">2020</a></li>-->
-            <li><a href="#last-blank">About Posts</a></li>
+            <li><a href="#last-blank">Posts</a></li>
+        </ul>
+        <ul style="float: right;">
             <li><a href="https://ooorouge.github.io/proposal.html">Proposal</a></li>
             <li><a href="#process-book">Process Book</a></li>
         </ul>
@@ -27,8 +32,16 @@
         blank
     </div>
 
+    <a id="back-to-top-button" href="#first-blank">
+        <i class="icon-arrow-up"></i>
+    </a>
+    <div class="overlay"></div>
+    <video playsinline autoplay muted loop>
+        <source src="images/cover.mp4" type="video/mp4" />
+    </video>
+
     <div class="section" id="cover">
-        <p id="project-title">Evolution of Stack Overflow</p>
+        <p id="project-title">Evolution of <span id="title-stack" class="animated-title">Stack</span> <span id="title-overflow" class="animated-title">Overflow</span></p>
     </div>
 
     <div class="blank">
@@ -194,6 +207,7 @@
 <script src="js/topojson.min.js"></script>
 <!--    <script src="http://d3js.org/topojson.v1.min.js"></script>-->
 <script src="js/geo.js"></script>
+<script src="js/self-animation.js"></script>
 
 <!--<script>-->
 
