@@ -19,6 +19,10 @@ $(window).scroll(function() {
     }
 });
 
+$(document).ready(() => {
+    $(".container-fluid").css({"padding": 0});
+});
+
 titleChanger();
 textChanger();
 
