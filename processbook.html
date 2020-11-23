@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        p {
+            font-size: 18px;
+            padding-left: 30px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            background-color: orange;
+            /*opacity: 70%;*/
+            border-radius: 10px;
+            padding-left: 10px;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            padding-left: 10px;
+        }
+
+        h4 {
+            padding-left: 20px;
+        }
+        ol {
+            margin-left: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-2">
+            <div style="height: 100px;"></div>
+            <nav class="nav flex-column" style=" position: fixed">
+                <a class="nav-link active" href="#info">Basic Info</a>
+                <a class="nav-link active" href="#overview">Overview and Motivation</a>
+                <a class="nav-link" href="#related">Related Work</a>
+                <a class="nav-link" href="#questions">Questions</a>
+                <a class="nav-link" href="#data">Data</a>
+                <a class="nav-link" href="#explore">Exploratory Data Analysis</a>
+                <a class="nav-link" href="#design">Design Evolution</a>
+                <a class="nav-link" href="#implementation">Implementation</a>
+                <a class="nav-link" href="#evaluation">Evaluation</a>
+            </nav>
+        </div>
+        <div class="col-8">
+        <br>
+
+            <p style="font-size: 50px; font-weight: bold; padding-left: 10px">Process Book</p>
+            <h2 id="info">Basic Info</h2>
+
+
+            <p>
+                Project title: Evolution of Stack Overflow
+            </p>
+            <p>
+                Team name: Stacked Cats
+            </p>
+            <p>
+                Members: Flora Sun, Jing Zhang, Yongcheng Long
+            </p>
+            <p>
+                Emails and IDs:
+            </p>
+            <ol>
+
+                <li><a href="mailto:yongcheng.long@wustl.edu">yongcheng.long@wustl.edu</a>, 476433
+
+                <li><a href="mailto:zjing@wustl.edu">zjing@wustl.edu</a>, 475536
+
+                <li><a href="mailto:zhixin.sun@wustl.edu">zhixin.sun@wustl.edu</a>, 475178
+                </li>
+            </ol>
+            <p>
+                Link to repo: <a href="https://github.com/ooorouge/ooorouge.github.io">https://github.com/ooorouge/ooorouge.github.io</a>
+            </p>
+            <h2 id="overview">Overview and Motivation</h2>
+
+
+            <p>
+                Stack Overflow might be the world's largest tech form that millions of users post their questions and answer others’ questions in one day, perhaps, we use it a lot to dig out solutions for it and might answer some of the questions. Since stack overflow was launched on September 15, 2008, it is quite an incredible accomplishment that it achieved. This is the reason why we’d like to find out the evolution of stack overflow by users and posts in recent six years. In users’ perspective, we are eager to find out in recent six years how many users involved in using stack overflow, are they active or not and who are the most voted problem solvers. In posts’ perspective, we’d like to know what are they related to by tags as well as the combinations of tags users used to categorize their questions.
+            </p>
+            <h2 id="related">Related Work</h2>
+
+
+            <ol>
+
+                <li>Stroy telling: <a href="https://www.flashgamehistory.com/">How Flash games shaped the video game industry</a>
+                    <p>
+
+                        <a href="https://pudding.cool/2020/08/campaign-colors/">How candidate diversity impacts color diversity</a>
+                    </p>
+                    <p>
+
+                        These two websites show that we can include animation and scrolling down visualization to tell a story vividly.
+                    </p>
+
+                </li>
+                <li>Relationships among computer science terms: <a href="https://observablehq.com/@d3/hierarchical-edge-bundling">How to present relationships among classes in a software hierarchy</a>
+                    <p>
+
+                        This visualization provided a template to organize the computer science terms and display relationships.
+                    </p>
+                </li>
+
+
+            </ol>
+            <h2 id="questions">Questions</h2>
+
+
+
+            <ol>
+
+                <li>Where are the users in recent years?
+
+                <li>Are they active or not?
+
+                <li>Who are the users with the highest level of reputation?
+
+                <li>What are the most popular tags used to categorize a question?
+
+                <li>How are the combinations of tags used to categorize a question?
+
+                <li>How many posts are made using these tags?
+
+                <li>(Optional question): How many posts are created over time?
+                </li>
+            </ol>
+            <h2 id="data">Data</h2>
+
+
+            <h3>Users</h3>
+
+
+            <h4>Number of new users and inactive users</h4>
+
+
+            <p>
+
+                src: <a href="https://data.stackexchange.com/stackoverflow/query/new">Query Stack Overflow</a>
+            </p>
+            <p>
+
+                Scraping method: Using SQL and download selections in csv format.
+            </p>
+            <p>
+
+                Cleanup: No need.
+            </p>
+            <h4>Geo data</h4>
+
+
+            <p>
+
+                src: <a href="https://insights.stackoverflow.com/">insights.stackoverflow.com</a>
+            </p>
+            <p>
+
+                Scraping method: Download
+            </p>
+            <p>
+
+                Cleanup: select countries which have a correct name which will be used to get longitude and latitude.
+            </p>
+            <h3>Posts</h3>
+
+
+            <p>
+                src: <a href="https://ia800107.us.archive.org/view_archive.php?archive=/27/items/stackexchange/stackoverflow.com-Tags.7z">Stackoverflow tag data posted by Internet Archive</a> and <a href="https://ia800107.us.archive.org/view_archive.php?archive=/27/items/stackexchange/stackoverflow.com-Posts.7z">Stackoverflow post data posted by Internet Archive</a>
+            </p>
+            <p>
+
+                Scraping method: Download
+            </p>
+            <h4>Combination between tags</h4>
+
+
+            <p>
+                cleanup:
+            </p>
+            <p>
+
+                Filter the tags using the Tag data obtained directly from the data source, drop the tags whose “count” attribute value is smaller than 100. <br>Using Regex to parse the “Tag” attribute in post data, and count the frequency of each pair in the filtered tags being used to label the same post for each year, and also count the annual frequency of each tag. Sort the tags with frequency and pick the first 70.<br>Render the data into json that fits to plot.
+            </p>
+            <h4>Monthly count per tags</h4>
+
+
+            <p>
+                cleanup:
+            </p>
+            <p>
+
+                Filter the tags using the joint set of the top 200 most frequently used tags each year. <br>Using Regex to parse the “Tag” attribute in post data, and count the monthly frequency of each tag in the filtered tags. And store the data in a csv, with the row to be the month and the column to be the tag.
+            </p>
+            <h4>Monthly count all post</h4>
+
+
+            <p>
+                cleanup:
+            </p>
+            <p>
+
+                Count the number of posts posted each month. And render the data in a json file which can be further used to draw a line chart.
+            </p>
+            <h2 id="explore">Exploratory Data Analysis</h2>
+
+
+            <h3>Users</h3>
+
+
+            <p>
+                Number of users: userCreation.csv/userLastAccess.csv
+            </p>
+            <p>
+                Geo info of countries: geo.csv
+            </p>
+            <h3>Posts </h3>
+
+
+            <p>
+                Edge Bundling Chart (<a href="https://observablehq.com/@d3/hierarchical-edge-bundling">a similar live example</a>) that shows the tag combination : com20**.csv
+            </p>
+            <p>
+                Force Collide Chart that shows the most frequent tag: com20**.csv (node data)
+            </p>
+            <p>
+                Line chart that shows the monthly count per tag: monthlyCountPerTag.csv
+            </p>
+            <p>
+                Area chart that shows the monthly count of total posts: totalPostCountPerMonth.csv
+            </p>
+            <h3>Additonal</h3>
+
+
+            <h2 id="design">Design Evolution</h2>
+
+
+            <h3>Prototype <code><em>on Proposal</em></code></h3>
+
+
+            <p>
+
+
+
+                <img src="images/image10.png" width="800px" height="1000px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <p>
+                We first designed the visualization to be like a dashboard where information on the same topic is grouped and visualized together and users can explore the data with interactions. User data and post data in two tab bars but they will share the same timeline with a brush to select a specific time range. In the user part, geo distribution of users, user growth over time and top users will be presented together. In the post part, most popular tags, their combinations and number of posts associated with them are displayed on the same page.
+            </p>
+            <h3>Test/Alpha <code><em>on Milestone 1</em></code></h3>
+
+
+            <p>
+
+
+                <img src="images/image11.png" width="900px" height="640px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <h3>
+
+
+                <img src="images/image12.png" width="900px" height="640px" alt="alt_text" title="image_tooltip">
+            </h3>
+
+
+            <p>
+
+
+
+                <img src="images/image13.png"  width="900px" height="640px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <p>
+
+
+                <img src="images/image14.png" width="900px" height="640px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <p>
+
+
+
+                <img src="images/image15.png" width="900px" height="640px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <p>
+
+
+
+                <img src="images/image16.png" width="900px" height="640px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <p>
+
+
+
+                <img src="images/image17.png" width="900px" height="640px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <p>
+                With some inspiration and discussion, we decided to update the way we present data and tell the story. The user part is changed to a scrolling down report in which the visualization is sticky and the data and description updating all the time for each year. For the post part, we seperate the most popular tags and tag combinations for each year with the trend of tags on posts over time. The selection on a certain tag in the bubble force chart will highlight the associated combinations in the edge bundling chart.
+            </p>
+            <h3>Beta</h3>
+
+
+            <h3>Prod</h3>
+
+
+            <h2 id="implementation">Implementation</h2>
+
+
+            <h3>Milestone 1</h3>
+
+
+            <h4>Cover page</h4>
+
+
+            <p>
+                We include a cover page for the website to highlight the title and may add some animation and detailed descriptions later.
+            </p>
+            <p>
+
+
+
+                <img src="images/image18.png" width="1000px" height="560px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <h4>About users</h4>
+
+
+            <p>
+                We made the visualizations to be sticky and placed the details at the right side.
+            </p>
+            <p>
+
+
+
+                <img src="images/image19.png"  width="1000px" height="560px" alt="alt_text" title="image_tooltip">
+
+            </p>
+            <h2 id="evaluation">Evaluation</h2>
+
+
+            <p>
+                What did you learn about the data by using your visualizations? How did you answer your questions? How well does your visualization work, and how could you further improve it?
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
