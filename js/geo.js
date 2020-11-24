@@ -2,7 +2,7 @@ $(".section").height($(window).height()-50);
 $(".description").height($(window).height()-50);
 
 var width = 1000;
-var height = 600;
+var height = 550;
 
 var svg = d3.select("#geomap").append("svg")
 .attr("width", width)
@@ -45,7 +45,11 @@ d3.json("data/world-110m.json").then(data => {
             var scrollTop = document.documentElement.scrollTop;
             var viewport_height = $window.height();
             var scrollTop_bottom = scrollTop + viewport_height;
-            div2.toggleClass('show', scrollTop > div1_top/2 && (scrollTop + window.innerHeight) < (div1_bottom + div3_height/2));
+            if (scrollTop > div1_top/2 && (scrollTop + window.innerHeight) < (div1_bottom + div3_height/2)) {
+                div2.addClass("show");
+            } else {
+                div2.removeClass('show');
+            }
         });
     });
 });

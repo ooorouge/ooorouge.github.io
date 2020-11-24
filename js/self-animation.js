@@ -12,15 +12,10 @@ $(window).on("scroll", function() {
 $(window).scroll(function() {
     var backToTop = $('#back-to-top-button');
     if (document.documentElement.scrollTop > $("#cover").height()) {
-        console.log("!!!!");
         backToTop.addClass('show');
     } else {
         backToTop.removeClass('show');
     }
-});
-
-$(document).ready(() => {
-    $(".container-fluid").css({"padding": 0});
 });
 
 titleChanger();
@@ -31,14 +26,14 @@ function titleChanger() {
     var overflow = document.getElementById("title-overflow");
 
     var symbols = "?*&^%$#@!".split("");
-    if (randomNumber(0, 5) < 3) {
+    if (randomNumber(0, 5) < 4) {
         stack.innerHTML = textAggregater(symbols, 4);
         overflow.innerHTML = textAggregater(symbols, 7);
     } else {
         stack.innerHTML = "Stack";
         overflow.innerHTML = "Overflow";
     }
-    setTimeout(titleChanger, randomNumber(1000, 5000));
+    setTimeout(titleChanger, randomNumber(1000, 3000));
 }
 
 function textAggregater(array, howmany) {

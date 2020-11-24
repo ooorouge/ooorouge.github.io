@@ -44,33 +44,8 @@ body {
 }
 
 nav {
-    width: 100vw;
-    height: 50px;
     background: black;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-}
-
-nav ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    padding: 20px;
-    width: 10vw;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
+    z-index: 5;
 }
 
 video {
@@ -86,14 +61,14 @@ video {
 #back-to-top-button {
     display: inline-block;
     background-color: transparent;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     text-align: center;
     border:  2px dotted rgb(1, 35, 69);
     border-radius: 5px;
     position: fixed;
-    bottom: 350px;
-    left: 50px;
+    bottom: 25%;
+    left: 3%;
     transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
     opacity: 0;
     visibility: hidden;
@@ -113,7 +88,7 @@ video {
 
 #back-to-top-button:hover {
     cursor: pointer;
-    background-color: rgb(70, 146, 222);
+    background-color: black;
     opacity: 0.5;
 }
 
@@ -129,7 +104,11 @@ video {
 .icon-arrow-up {
     color: rgb(1, 35, 69);
     vertical-align: middle;
-    font-size: 40px;
+    font-size: 50px;
+}
+
+.icon-arrow-up:hover{
+    color: white;
 }
 
 #cover {
@@ -201,16 +180,14 @@ video {
 }
 
 .canvas {
-    /*display: inline;*/
-    float: left;
+    float: right;
     width: 1300px;
     height: 100%;
 }
 
 .description {
-    /*display: inline;*/
     float: right;
-    width: 30%;
+    width: 50%;
     height: 100%;
     background: orange;
     opacity: 50%;
@@ -224,45 +201,30 @@ video {
 
 .worldmap {
     position: fixed;
-
-    left: 0;
-    right: 500px;
-    top: 60px;
-    bottom: 150px;
-    width: 1000px;
-    /*width: 70%;*/
-    height: 900px;
-    /*background-color: mediumpurple;*/
+    left: 10vw;
+    top: 8vh;
+    bottom: 8vh;
+    width: 70vw;
+    height: 80vh;
     display: none;
-    z-index: -1;
-    /*top: 250px;*/
+    z-index: 1;
+}
+
+#map {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s, opacity 0.5s;
 }
 
 #map.show {
-    display: block;
-    transition-duration: 0.5s;
+    opacity: 1;
+    visibility: visible;
 }
 
 
 .blank {
     visibility: hidden;
     height: 50px;
-}
-
-#growth {
-    float: left;
-    width: 500px;
-    height: 270px;
-}
-
-#top-user{
-    float: right;
-    width: 500px;
-    height: 270px;
-}
-
-#geomap {
-    /*margin-bottom: 30px;*/
 }
 
 #posts {
