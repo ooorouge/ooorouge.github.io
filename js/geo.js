@@ -1,58 +1,33 @@
-$(".section").height($(window).height()-50);
-$(".description").height($(window).height()-50);
+GeoBackground = function() {
+    var vis = this;
 
-var width = 1000;
-var height = 550;
+    vis.width = 1000;
+    vis.height = 550;
 
-var svg = d3.select("#geomap").append("svg")
-.attr("width", width)
-.attr("height", height)
+    vis.svg = d3.select("#geomap").append("svg")
+        .attr("width", vis.width)
+        .attr("height", vis.height)
 
-var projection = d3.geoMercator()
-    .translate([width / 2, height / 2]);
+    vis.projection = d3.geoMercator()
+        .translate([vis.width / 2, vis.height / 2]);
 
-var path = d3.geoPath()
-    .projection(projection);
+    path = d3.geoPath()
+        .projection(vis.projection);
 
-d3.json("data/world-110m.json").then(data => {
+    d3.json("data/world-110m.json").then(data => {
 
-    // Convert TopoJSON to GeoJSON (target object = 'states')
-    console.log("drawing...");
-    var world = topojson.feature(data, data.objects.countries).features
+        // Convert TopoJSON to GeoJSON (target object = 'states')
+        console.log("drawing...");
+        var world = topojson.feature(data, data.objects.countries).features
 
-    // Render the U.S. by using the path generator
-    svg.selectAll("path")
-        .data(world)
-        .enter()
-        .append("path")
-        .attr("d", path);
+        // Render the U.S. by using the path generator
+        vis.svg.selectAll("path")
+            .data(world)
+            .enter()
+            .append("path")
+            .attr("d", path);
 
-    d3.select("#growth").append("img").attr("src", "images/usergrowth.png").attr("width", 500).attr("height", 270);
-    d3.select("#top-user").append("img").attr("src", "images/topusers.png").attr("width", 500).attr("height", 270);
-
-
-    $(document).ready(function() {
-        var $window = $(window);
-        var div2 = $('#map');
-        var div1 = $('#maps');
-        var div1_top = div1.offset().top;
-        var div1_height = div1.height();
-        var div1_bottom = div1_top + div1_height;
-        var div3 = $("#posts")
-        var div3_height = div3.height();
-        console.log(div1_bottom);
-        $window.on('scroll', function() {
-            var scrollTop = document.documentElement.scrollTop;
-            var viewport_height = $window.height();
-            var scrollTop_bottom = scrollTop + viewport_height;
-            if (scrollTop > div1_top/2 && (scrollTop + window.innerHeight) < (div1_bottom + div3_height/2)) {
-                div2.addClass("show");
-            } else {
-                div2.removeClass('show');
-            }
-        });
+        d3.select("#growth").append("img").attr("src", "images/usergrowth.png").attr("width", 500).attr("height", 270);
+        d3.select("#top-user").append("img").attr("src", "images/topusers.png").attr("width", 500).attr("height", 270);
     });
-});
-
-
-console.log("last line");
+}

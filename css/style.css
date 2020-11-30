@@ -189,8 +189,7 @@ video {
     float: right;
     width: 50%;
     height: 100%;
-    background: orange;
-    opacity: 50%;
+    opacity: 80%;
 }
 
 .message {
