@@ -26,8 +26,5 @@ GeoBackground = function() {
             .enter()
             .append("path")
             .attr("d", path);
-
-        d3.select("#growth").append("img").attr("src", "images/usergrowth.png").attr("width", 500).attr("height", 270);
-        d3.select("#top-user").append("img").attr("src", "images/topusers.png").attr("width", 500).attr("height", 270);
     });
 }

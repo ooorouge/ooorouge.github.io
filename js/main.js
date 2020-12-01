@@ -1,5 +1,5 @@
 var geoBackgroud;
-var userBundle = {usrGeo: null, usrGrowth: null, topRep: null, instance: null};
+var userBundle;
 var postBundle;
 
 var userGeoData;
@@ -10,21 +10,36 @@ indexInit();
 function indexInit() {
     $(".section").height($(window).height()-50);
     $(".description").height($(window).height()-50);
+    $("#year-slider").on("input", event => {
+
+        // TODO: change post charts accordingly.
+        var year = 2008 + parseInt($(event.currentTarget).val());
+        console.log(year); //2008 to 2020, int
+
+    });
     loadData();
-    loadInstance();
+    loadInstance(); // comment this line and use it in promise once you get started to work, like: jquery or d3, like line 31
+                                                        // d3.csv().then(data => {
+                                                        //     do something to load data
+                                                        //     loadInstance(); 
+                                                        // })
 }
 
 function loadData() {
     // TODO:
+    // DON'T CHANGE POST CHART HERE, CHANGE IT IN Line 15
     // load and process geo
-    // then userBundle.usrGeo = whatData
+    // loadInstance();
+    // then userBundle.geodata = whatData
+    // userBundle.growthData = whatData
+    // userBundle.topUserData = whatData
     // then userBundle.
 }
 
 function loadInstance() {
     geoBackgroud = new GeoBackground();
-    userBundle.instance = new UserBundle();
-    psotBundle = new PostBundle();
+    userBundle = new UserBundle();
+    postBundle = new PostBundle();
 }
 
 function updateSpecificYear(whichone) {
@@ -46,8 +61,11 @@ $(document).ready(function() {
     var div3_height = div3.height();
 
     var triggers = [];
+
+    // This two variables are used to avoid load user chart multi times even in the same year on scroll
     var YearOfLastScroll = 2015;
     var actionAlreadyTaken = false;
+
     var boundaries = [];
     for (var i = 0; i < 6; ++i) {
         triggers.push(false);
@@ -72,7 +90,10 @@ $(document).ready(function() {
                 }
                 triggers[0] = true;
                 actionAlreadyTaken = (2015 == YearOfLastScroll);
-                console.log("==== 2015"  + actionAlreadyTaken);
+
+                // Just for your convenience, if you feel like you don't need it anymore, delete it.
+                console.log("==== 2015"  + actionAlreadyTaken); 
+
                 break; // no need for another round of if-else check;
             }
             if (scrollTop >= boundaries[i-1] && scrollTop < boundaries[i]) {
@@ -81,8 +102,11 @@ $(document).ready(function() {
                 }
                 triggers[i] = true;
                 actionAlreadyTaken = ((2015 + i) == YearOfLastScroll);
+
+                // Just for your convenience, if you feel like you don't need it anymore, delete it.
                 console.log("=======" + actionAlreadyTaken);
-                console.log("on 20" + String(15 + i)); // draw specific year of charts
+                console.log("on 20" + String(15 + i)); // Just for your convenience
+
                 break; // no need for another round of if-else check;
             }
         }

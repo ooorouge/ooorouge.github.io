@@ -1,4 +1,6 @@
 PostBundle = function() {
+    // Add whatever param you need to this function
+    // Don't forget to change it in main function too.
     var vis = this;
 
     vis.initVis();
@@ -6,6 +8,13 @@ PostBundle = function() {
 
 PostBundle.prototype.initVis = function() {
     var vis = this;
+
+    // TODO:
+    // Init SVG for bubble chart
+
+    // Init SVG for connection
+
+    // Init SVG for trends
 
     vis.wrangleData();
 }
@@ -18,5 +27,9 @@ PostBundle.prototype.wrangleData = function() {
 
 PostBundle.prototype.updateVis = function() {
     var vis = this;
+    // draw SVG for bubble chart
 
+    // draw SVG for connection
+
+    // draw SVG for trends
 }
