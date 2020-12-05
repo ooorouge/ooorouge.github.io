@@ -248,17 +248,30 @@ video {
     height: 640px;
 }
 
-#numbers {
-    display: block;
-    margin-left: 400px;
+/*#numbers {*/
+/*    display: block;*/
+/*    margin-left: 400px;*/
+/*}*/
+
+
+#tags-trending {
+    padding-top: 50px;
 }
 
 #tags-area {
-    display: block;
+    /*float: right;*/
+    /*width: 100px;*/
+    /*padding-top: 50px;*/
+    height: 500px;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: 8px;
+    overflow: scroll;
+
 }
 
 #trends {
-    margin-left: 0;
+    margin-left: 30px;
     /*display: inline;*/
     /*text-align: left;*/
 

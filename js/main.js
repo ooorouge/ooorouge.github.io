@@ -6,6 +6,7 @@ var userGeoData;
 var userGrowthData;
 
 indexInit();
+document.getElementById("submit-tags").addEventListener("click", updateTags);
 
 function indexInit() {
     $(".section").height($(window).height()-50);
@@ -18,11 +19,9 @@ function indexInit() {
 
     });
     loadData();
-    loadInstance(); // comment this line and use it in promise once you get started to work, like: jquery or d3, like line 31
-                                                        // d3.csv().then(data => {
-                                                        //     do something to load data
-                                                        //     loadInstance(); 
-                                                        // })
+    d3.csv("data/monthlyCountPerTag.csv").then(monthlyCount => {
+        loadInstance(monthlyCount);
+    })
 }
 
 function loadData() {
@@ -36,10 +35,10 @@ function loadData() {
     // then userBundle.
 }
 
-function loadInstance() {
+function loadInstance(monthlyCount) {
     geoBackgroud = new GeoBackground();
     userBundle = new UserBundle();
-    postBundle = new PostBundle();
+    postBundle = new PostBundle(monthlyCount);
 }
 
 function updateSpecificYear(whichone) {
@@ -48,6 +47,24 @@ function updateSpecificYear(whichone) {
     // param: whichone : Integer, example: 0 means 2015, 1 means 2016, etc
     // userBundle.instance.something = newData;
     // userBUndle.instance.wrangleData();
+}
+
+function updateTags() {
+    const checkboxes = document.querySelectorAll('input[name="tag"]:checked');
+    let tags = [];
+    checkboxes.forEach((checkbox) => {
+        tags.push(checkbox.value);
+    });
+    //alert(tags);
+    console.log(postBundle.monthlyCount);
+    var data = postBundle.monthlyCount.map(function(d) {
+        var selectedTags = {month: d.month};
+        tags.forEach( tag => {
+            selectedTags[tag] = d[tag];
+        })
+        return selectedTags
+    })
+    postBundle.wrangleData(data);
 }
 
 $(document).ready(function() {
