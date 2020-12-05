@@ -2,7 +2,8 @@ var geoBackgroud;
 var userBundle;
 var postBundle;
 
-var userGeoData;
+var userTotal;
+var userGeoData = new Map();
 var userGrowthData;
 
 indexInit();
@@ -25,19 +26,34 @@ function indexInit() {
 }
 
 function loadData() {
-    // TODO:
-    // DON'T CHANGE POST CHART HERE, CHANGE IT IN Line 15
-    // load and process geo
-    // loadInstance();
-    // then userBundle.geodata = whatData
-    // userBundle.growthData = whatData
-    // userBundle.topUserData = whatData
-    // then userBundle.
+    var files = ["data/geo.csv", "data/clean_survey_all.csv"];
+    var promises = [];
+
+    files.forEach(f => {
+        promises.push(d3.csv(f));
+    });
+
+    Promise.all(promises).then(v => {
+        var g = v[1];
+        var y = v[0];
+        userTotal = g;
+        var gks = Object.keys(g[0]);
+
+        var co = gks.slice(1, gks.length - 1);
+
+        co.forEach( c => {
+            y.forEach(row => {
+                if (row.country == c) {
+                    userGeoData[c] = { lo : parseFloat(row.longitude), la : parseFloat(row.latitude)};
+                }
+            });
+        });
+    });
 }
 
 function loadInstance(monthlyCount) {
     geoBackgroud = new GeoBackground();
-    userBundle = new UserBundle();
+    userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, userTotal[0]);
     postBundle = new PostBundle(monthlyCount);
 }
 
@@ -47,6 +63,8 @@ function updateSpecificYear(whichone) {
     // param: whichone : Integer, example: 0 means 2015, 1 means 2016, etc
     // userBundle.instance.something = newData;
     // userBUndle.instance.wrangleData();
+    userBundle.year = userTotal[whichone];
+    userBundle.wrangleData();
 }
 
 function updateTags() {
@@ -109,7 +127,7 @@ $(document).ready(function() {
                 actionAlreadyTaken = (2015 == YearOfLastScroll);
 
                 // Just for your convenience, if you feel like you don't need it anymore, delete it.
-                console.log("==== 2015"  + actionAlreadyTaken); 
+                // console.log("==== 2015"  + actionAlreadyTaken); 
 
                 break; // no need for another round of if-else check;
             }
@@ -121,8 +139,8 @@ $(document).ready(function() {
                 actionAlreadyTaken = ((2015 + i) == YearOfLastScroll);
 
                 // Just for your convenience, if you feel like you don't need it anymore, delete it.
-                console.log("=======" + actionAlreadyTaken);
-                console.log("on 20" + String(15 + i)); // Just for your convenience
+                // console.log("=======" + actionAlreadyTaken);
+                // console.log("on 20" + String(15 + i)); // Just for your convenience
 
                 break; // no need for another round of if-else check;
             }
