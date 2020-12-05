@@ -1,9 +1,10 @@
-PostBundle = function() {
+PostBundle = function(tagForceChart, edgeBundlingChart) {
     // Add whatever param you need to this function
     // Don't forget to change it in main function too.
-    var vis = this;
-
-    vis.initVis();
+    var self = this;
+    self.tagForceChart = tagForceChart;
+    self.edgeBundlingChart = edgeBundlingChart;
+    self.initVis();
 }
 
 PostBundle.prototype.initVis = function() {

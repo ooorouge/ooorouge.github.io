@@ -1,5 +1,7 @@
 # large dataset -- changed by Flora
 *.xml
+*.ipynb
+dataBackUp/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
