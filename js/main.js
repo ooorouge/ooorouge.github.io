@@ -3,15 +3,14 @@ var userBundle;
 var postBundle;
 
 var userTotal;
-var userGeoData = new Map();
+var userGeoData = {};
 var userGrowthData;
 
-indexInit();
-document.getElementById("submit-tags").addEventListener("click", updateTags);
-
 function indexInit() {
+    
     $(".section").height($(window).height()-50);
     $(".description").height($(window).height()-50);
+    $("#submit-tags").on("click", updateTags);
     $("#year-slider").on("input", event => {
 
         // TODO: change post charts accordingly.
@@ -20,8 +19,9 @@ function indexInit() {
 
     });
     loadData();
+
     d3.csv("data/monthlyCountPerTag.csv").then(monthlyCount => {
-        loadInstance(monthlyCount);
+        postBundle = new PostBundle(monthlyCount);
     })
 }
 
@@ -48,13 +48,9 @@ function loadData() {
                 }
             });
         });
+        geoBackgroud = new GeoBackground();
+        userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, g[0]);
     });
-}
-
-function loadInstance(monthlyCount) {
-    geoBackgroud = new GeoBackground();
-    userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, userTotal[0]);
-    postBundle = new PostBundle(monthlyCount);
 }
 
 function updateSpecificYear(whichone) {
@@ -86,6 +82,8 @@ function updateTags() {
 }
 
 $(document).ready(function() {
+    $(this).scrollTop(0);
+    indexInit();
     var $window = $(window);
     var div2 = $('#map');
     var div1 = $('#maps');

@@ -284,6 +284,12 @@ video {
   font-size: 18px;
 }
 
+#geomap path {
+    stroke: rgb(112, 121, 14);
+    fill: gray;
+    fill-opacity: 0.2;
+}
+
 /*#slider-area {*/
 /*    margin-left: 20%;*/
 /*    margin-right: 20%;*/
@@ -342,6 +348,7 @@ video {
   color: #fff;
   border-radius: 4px;
   font-size: 12px;
+  z-index: 5;
 }
 
 /* Creates a small triangle extender for the tooltip */
