@@ -15,6 +15,9 @@ UserBundle = function(_parentGeoSVG, _projection, _geo, _year) {
 UserBundle.prototype.initVis = function() {
     var vis = this;
 
+    vis.nodeGroup = vis.geoSvg.append("g")
+        .attr("transform", "translate(0,0)");
+
     vis.cScale = d3.scaleLinear().range([2, 8]);
 
     // TODO:
@@ -64,9 +67,9 @@ UserBundle.prototype.updateVis = function() {
             return d.tagName + ": " + d.count;
         });
 
-    vis.geoSvg.call(tip);
+    vis.nodeGroup.call(tip);
     // Draw counties;
-    vis.nodes = vis.geoSvg.selectAll(".node").data(vis.displayData);
+    vis.nodes = vis.nodeGroup.selectAll(".node").data(vis.displayData);
 
     vis.nodes
         .enter().append("circle").attr("class", "node")
@@ -88,6 +91,7 @@ UserBundle.prototype.updateVis = function() {
         .on("mouseout", tip.hide);
 
     vis.nodes.exit().remove();
+    console.log("finishing nodes!!!!")
     // Draw total users and inactive usrs;
     // Draw top reputation;
 }

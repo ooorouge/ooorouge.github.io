@@ -203,7 +203,7 @@ video {
     left: 10vw;
     top: 10vh;
     bottom: 8vh;
-    width: 65vw;
+    width: 50vw;
     height: 55vh;
     display: none;
 }
@@ -285,8 +285,7 @@ video {
 
 #geomap path {
     stroke: rgb(112, 121, 14);
-    fill: gray;
-    fill-opacity: 0.2;
+    fill: gainsboro;
     z-index: -1;
 }
 

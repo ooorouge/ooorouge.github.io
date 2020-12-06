@@ -33,6 +33,8 @@ function loadData() {
         promises.push(d3.csv(f));
     });
 
+    promises.push(d3.json("data/world-110m.json"));
+
     Promise.all(promises).then(v => {
         var g = v[1];
         var y = v[0];
@@ -48,7 +50,7 @@ function loadData() {
                 }
             });
         });
-        geoBackgroud = new GeoBackground();
+        geoBackgroud = new GeoBackground(v[2]);
         userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, g[0]);
     });
 }

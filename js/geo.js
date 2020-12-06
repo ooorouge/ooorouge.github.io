@@ -1,4 +1,4 @@
-GeoBackground = function() {
+GeoBackground = function(worldData) {
     var vis = this;
 
     vis.width = $(".worldmap").width();
@@ -14,17 +14,16 @@ GeoBackground = function() {
     path = d3.geoPath()
         .projection(vis.projection);
 
-    d3.json("data/world-110m.json").then(data => {
+    console.log("drawing...");
+    var world = topojson.feature(worldData, worldData.objects.countries).features
 
-        // Convert TopoJSON to GeoJSON (target object = 'states')
-        console.log("drawing...");
-        var world = topojson.feature(data, data.objects.countries).features
-
-        // Render the U.S. by using the path generator
-        vis.svg.selectAll("path")
-            .data(world)
-            .enter()
-            .append("path")
-            .attr("d", path);
-    });
+    // Render the U.S. by using the path generator
+    vis.svg.append("g")
+        .attr("id", "background-map")
+        .attr("transform", "translate(0,0)")
+        .selectAll("path")
+        .data(world)
+        .enter()
+        .append("path")
+        .attr("d", path);
 }
