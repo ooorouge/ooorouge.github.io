@@ -2,8 +2,12 @@ PostBundle = function(monthlyCount) {
     // Add whatever param you need to this function
     // Don't forget to change it in main function too.
     var vis = this;
-
+    var parseTime = d3.timeParse("%Y-%m");
     vis.monthlyCount = monthlyCount.slice(0, monthlyCount.length-1);
+    vis.monthlyCount.forEach(function(d) {
+        d.month = parseTime(d.month);
+        return d;
+    })
     console.log(vis.monthlyCount);
 
     vis.initVis();
@@ -25,18 +29,11 @@ PostBundle.prototype.initVis = function() {
     })
 
     tags.forEach((d, i) => {
-        // d3.select("#tags-area").append("div")
-        //     .append("input")
-        //     .attr("type", "checkbox")
-        //     .attr("name", "tag")
-        //     .attr("value", d)
-        //     //.append("text")
-        //     .text(d)
         var checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.name = 'tag';
         checkbox.value = d;
-        if(i < 5) {
+        if(d == "java" || d == "python") {
             checkbox.checked = true;
         }
 
@@ -48,11 +45,8 @@ PostBundle.prototype.initVis = function() {
 
         var container = document.getElementById("tags-area");
         var theDiv = container.appendChild(document.createElement("div"));
-        //theDiv.class = "select-tag";
         theDiv.appendChild(checkbox);
-        //container.appendChild(label);
         theDiv.appendChild(document.createTextNode(d));
-        //container.appendChild(br);
     })
 
     vis.monthlyMargin = {top: 30, bottom: 30, left: 30, right : 30};
@@ -65,7 +59,13 @@ PostBundle.prototype.initVis = function() {
 
     vis.topCountData = vis.monthlyCount.map(function(d) {
         //var thisYear = {};
-        return Object.fromEntries(Object.entries(d).slice(0, 6));
+        //return Object.fromEntries(Object.entries(d).slice(0, 6));
+        var thisYear = {};
+        thisYear.month = d.month;
+        thisYear.java = d.java;
+        thisYear.python = d.python;
+        return thisYear;
+
     });
     console.log(vis.topCountData);
 
@@ -84,10 +84,31 @@ PostBundle.prototype.initVis = function() {
         .attr("class", "yAxis")
         .attr("transform", "translate(40, 0)")
 
-    vis.xAxis = d3.axisBottom(vis.x);
 
-    vis.yAxis = d3.axisLeft(vis.y);
 
+    vis.focus = vis.monthlySvg.append("g")
+        .attr("class", "focus")
+        .style("display", "none");
+
+    vis.focus.append("line").attr("class", "lineHover")
+        .style("stroke", "#999")
+        .attr("stroke-width", 1)
+        .style("shape-rendering", "crispEdges")
+        .style("opacity", 0.5)
+        .attr("y1", -vis.monthlyHeight)
+        .attr("y2",0);
+
+    vis.focus.append("text").attr("class", "lineHoverDate")
+        .attr("text-anchor", "middle")
+        .attr("font-size", 12);
+
+    vis.overlay = vis.monthlySvg.append("rect")
+        .attr("class", "overlay")
+        .attr("x", 40)
+        .attr("width", vis.monthlyWidth - 40)
+        .attr("height", vis.monthlyHeight)
+        .style("fill", "none")
+        .style("pointer-events", "all")
 
 
     vis.wrangleData(vis.topCountData);
@@ -108,21 +129,10 @@ PostBundle.prototype.updateVis = function() {
     // draw SVG for connection
 
     // draw SVG for trends
-    var parseTime = d3.timeParse("%Y-%m");
-
-    // var x = d3.scaleTime()
-    //     //.domain(d3.extent(vis.topCountData, d => d.date))
-    //     .range([40, vis.monthlyWidth])
-    //
-    // var y = d3.scaleLinear()
-    //     .range([vis.monthlyHeight, 0])
+    var formatDate = d3.timeFormat("%Y-%m");
+    var bisectDate = d3.bisector(d => d.month).left;
 
     var color = d3.scaleOrdinal(d3.schemeCategory10);
-    //
-    // var xAxis = d3.axisBottom(vis.x);
-    //
-    // var yAxis = d3.axisLeft(vis.y);
-
 
 
     color.domain(Object.keys(vis.selectedData[0]).filter(function(key) {
@@ -134,7 +144,7 @@ PostBundle.prototype.updateVis = function() {
             tag: tag,
             values: vis.selectedData.map(function(d) {
                 return {
-                    date: parseTime(d.month),
+                    date: d.month,
                     count: +d[tag]
                 }
             })
@@ -143,7 +153,8 @@ PostBundle.prototype.updateVis = function() {
 
     console.log(vis.lineData);
 
-    vis.x.domain(d3.extent(vis.selectedData, d => parseTime(d.month)));
+    //vis.x.domain(d3.extent(vis.selectedData, d => parseTime(d.month)));
+    vis.x.domain(d3.extent(vis.selectedData, d => d.month));
 
     vis.y.domain([
         d3.min(vis.lineData, function(tag) {
@@ -153,6 +164,10 @@ PostBundle.prototype.updateVis = function() {
             return d3.max(tag.values, function(values) {return values.count})
         })
     ])
+
+    vis.xAxis = d3.axisBottom(vis.x);
+
+    vis.yAxis = d3.axisLeft(vis.y);
 
     var line = d3.line()
         .x(function(d) {
@@ -172,31 +187,78 @@ PostBundle.prototype.updateVis = function() {
 
     lines.exit().remove();
 
-    var tooltip = vis.monthlySvg
-        .append("div")
-        .style("position", "absolute")
-        .style("z-index", "10")
-        .style("visibility", "hidden")
-        .text("a simple tooltip");
-
     lines.enter()
         .append("path")
         .attr("class", "line")
-        .attr("d", function(d) {return line(d.values)})
+
+    vis.monthlySvg.selectAll(".line").attr("d", function(d) {return line(d.values)})
         .attr("fill", "none")
         .attr("stroke-width", 1)
         .attr("stroke", function(d) {
             return color(d.tag);
         })
-        .on("mouseover", function(d){
-            // return tooltip.style("visibility", "visible").text(d.tag);
-            var tooltip = vis.monthlySvg.append("text").attr("x", 200).attr("y", 200).text(d.tag);
-            return tooltip;
-            //return vis.monthlySvg.append("text").x(200).y(200).text(d.tag);
-        })
 
 
+    var labels = vis.focus.selectAll(".lineHoverText")
+        .data(vis.lineData)
 
+    labels.exit().remove();
+
+    labels.enter().append("text")
+        .attr("class", "lineHoverText")
+        .style("fill", d => color(d.tag))
+        .attr("text-anchor", "start")
+        .attr("font-size",12)
+        .attr("dy", (_, i) => 1 + i * 2 + "em")
+        .merge(labels);
+
+    var circles = vis.focus.selectAll(".hoverCircle")
+        .data(vis.lineData)
+
+    circles.exit().remove();
+
+    circles.enter().append("circle")
+        .attr("class", "hoverCircle")
+        .style("fill", d => color(d.tag))
+        .attr("r", 2.5)
+        .merge(circles);
+
+    vis.monthlySvg.selectAll(".overlay")
+        .on("mouseover", function() { vis.focus.style("display", null); })
+        .on("mouseout", function() { vis.focus.style("display", "none"); })
+        .on("mousemove", mousemove);
+
+    function mousemove(event) {
+
+        var x0 = vis.x.invert(d3.pointer(event)[0]),
+            i = bisectDate(vis.selectedData, x0, 1),
+            d0 = vis.selectedData[i - 1],
+            d1 = vis.selectedData[i],
+            d = x0 - d0.month > d1.month - x0 ? d1 : d0;
+
+        vis.focus.select(".lineHover")
+            .attr("transform", "translate(" + vis.x(d.month) + "," + vis.monthlyHeight + ")");
+
+        vis.focus.select(".lineHoverDate")
+            .attr("transform", "translate(" + vis.x(d.month) + "," + (vis.monthlyHeight + vis.monthlyMargin.bottom) + ")")
+            .text(formatDate(d.month));
+
+        vis.focus.selectAll(".hoverCircle")
+            .attr("cy", e => vis.y(d[e.tag]))
+            .attr("cx", vis.x(d.month));
+
+        vis.focus.selectAll(".lineHoverText")
+            .attr("transform", "translate(" + (vis.x(d.month)) + "," + vis.monthlyHeight / 2.5 + ")")
+            .text(e => e.tag + " " + Math.round(d[e.tag]));
+
+        vis.x(d.month) > (vis.monthlyWidth - vis.monthlyWidth / 4)
+            ? vis.focus.selectAll("text.lineHoverText")
+                .attr("text-anchor", "end")
+                .attr("dx", -10)
+            : vis.focus.selectAll("text.lineHoverText")
+                .attr("text-anchor", "start")
+                .attr("dx", 10)
+    }
 
 
 }

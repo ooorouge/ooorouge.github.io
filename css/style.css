@@ -253,9 +253,9 @@ video {
 /*}*/
 
 
-#tags-trending {
-    padding-top: 50px;
-}
+/*#tags-trending {*/
+/*    padding-top: 20px;*/
+/*}*/
 
 #tags-area {
     /*float: right;*/
@@ -267,6 +267,10 @@ video {
     border-width: 8px;
     overflow: scroll;
 
+}
+
+#select-instr {
+    margin-bottom: 20px;
 }
 
 #trends {
