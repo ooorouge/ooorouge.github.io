@@ -72,7 +72,7 @@ function updateTags() {
         tags.push(checkbox.value);
     });
     //alert(tags);
-    console.log(postBundle.monthlyCount);
+    //console.log(postBundle.monthlyCount);
     var data = postBundle.monthlyCount.map(function(d) {
         var selectedTags = {month: d.month};
         tags.forEach( tag => {
