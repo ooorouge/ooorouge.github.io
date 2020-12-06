@@ -201,12 +201,11 @@ video {
 .worldmap {
     position: fixed;
     left: 10vw;
-    top: 8vh;
+    top: 10vh;
     bottom: 8vh;
-    width: 70vw;
-    height: 80vh;
+    width: 65vw;
+    height: 55vh;
     display: none;
-    z-index: 1;
 }
 
 #map {
@@ -288,6 +287,7 @@ video {
     stroke: rgb(112, 121, 14);
     fill: gray;
     fill-opacity: 0.2;
+    z-index: -1;
 }
 
 /*#slider-area {*/

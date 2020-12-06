@@ -1,8 +1,8 @@
 GeoBackground = function() {
     var vis = this;
 
-    vis.width = 1000;
-    vis.height = 550;
+    vis.width = $(".worldmap").width();
+    vis.height = $(".worldmap").height();
 
     vis.svg = d3.select("#geomap").append("svg")
         .attr("width", vis.width)
