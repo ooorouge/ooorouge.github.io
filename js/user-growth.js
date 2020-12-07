@@ -44,7 +44,7 @@ UserGrowth.prototype.initVis = function() {
         .attr("height", 10)
         .attr("fill", function(d) {
             if(d == "active") {
-                return "lightgreen"
+                return "rgb(82,133,236)"
             }
             return "lightgrey"
         });
@@ -146,24 +146,28 @@ UserGrowth.prototype.updateVis = function(i) {
         })
 
 
-    var users = vis.svg.selectAll(".area")
+    vis.users = vis.svg.selectAll(".area")
         .data(stackedData);
 
-    users.enter().append("path")
+    vis.users.enter().append("path")
         .attr("class", "area")
-        .merge(users)
+        .merge(vis.users)
+        .style("fill-opacity", 0.3)
+        .transition()
+        .duration(300)
         .style("fill", function(d,i) {
             if(i == 0) {
                 return "lightgrey";
             }
-            return "lightgreen";
+            return "rgb(82,133,236)";
         })
+        .style("fill-opacity", 1)
         .attr("d", function(d) {
             return vis.area(d);
         })
 
 
-    users.exit().remove();
+    vis.users.exit().remove();
 
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);

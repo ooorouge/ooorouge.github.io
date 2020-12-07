@@ -82,7 +82,13 @@ UserBundle.prototype.updateVis = function() {
         .attr("stroke", "orange")
         .attr("fill", "yellow")
 
-    vis.nodes.attr("r", d => {
+    vis.nodes
+        .on("mouseover", tip.show)
+        .on("mouseout", tip.hide)
+        .style("fill-opacity", 0.3)
+        .transition()
+        .duration(300)
+        .attr("r", d => {
             return vis.cScale(d.count);
         })
         .attr("cx", d => {
@@ -93,9 +99,8 @@ UserBundle.prototype.updateVis = function() {
             var thisGeo = vis.geo[d.tagName];
             return vis.projection([thisGeo.lo, thisGeo.la])[1];
         })
-        .style("fill-opacity", 0.7)
-        .on("mouseover", tip.show)
-        .on("mouseout", tip.hide);
+        .style("fill-opacity", 0.7);
+
 
     vis.nodes.exit().remove();
     console.log("finishing nodes!!!!")
