@@ -119,20 +119,7 @@ video {
     width: 100%;
 }
 
-#user-2015 {
-    /*height: 700px;*/
-    /*background-image: url("../img/worldmap.jpg");*/
-    /*display: inline-block;*/
-    width: 100%;
-}
-
-#user-2016 {
-    /*height: 700px;*/
-    display: inline-block;
-    width: 100%;
-}
-
-#user-2017 {
+.section.users {
     /*height: 700px;*/
     display: inline-block;
     width: 100%;
@@ -186,6 +173,7 @@ video {
 }
 
 .description {
+    padding-top: 10%;
     float: right;
     width: 50%;
     height: 100%;

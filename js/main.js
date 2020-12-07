@@ -170,3 +170,5 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).on('change', 'input[type=checkbox]', updateTags);
