@@ -1,4 +1,4 @@
-UserBundle = function(_parentGeoSVG, _projection, _geo, _year) {
+UserBundle = function(_parentGeoSVG, _projection, _geo, _year, _maxCount, _minCount) {
     // TODO
     // Add whatever you need into param of this function, besides _parentGeoSVG and _projection function
     // Don't forget to change it in main function too.
@@ -8,6 +8,9 @@ UserBundle = function(_parentGeoSVG, _projection, _geo, _year) {
     vis.projection = _projection;
     vis.geo = _geo;
     vis.year = _year;
+    vis.maxCount = _maxCount;
+    vis.minCount = _minCount;
+
 
     vis.initVis();
 }
@@ -18,7 +21,8 @@ UserBundle.prototype.initVis = function() {
     vis.nodeGroup = vis.geoSvg.append("g")
         .attr("transform", "translate(0,0)");
 
-    vis.cScale = d3.scaleLinear().range([2, 8]);
+    //vis.cScale = d3.scaleLinear().range([2, 8]);
+    vis.cScale = d3.scaleLinear().range([1, 50]);
 
     // TODO:
     // besides draw countires directly on geoSVG, we need two new svg
@@ -51,14 +55,16 @@ UserBundle.prototype.wrangleData = function() {
         vis.displayData.push({tagName: p, count: parseInt(vis.year[p])});
     });
 
+    vis.cScale.domain([vis.minCount, vis.maxCount]);
+
     vis.updateVis();
 }
 
 UserBundle.prototype.updateVis = function() {
     var vis = this;
 
-    vis.cScale
-        .domain(vis.displayData.map(d => d.count));
+    // vis.cScale
+    //     .domain(vis.displayData.map(d => d.count));
 
     var tip = d3.tip()
         .attr("class", "d3-tip")
@@ -75,7 +81,8 @@ UserBundle.prototype.updateVis = function() {
         .enter().append("circle").attr("class", "node")
         .attr("stroke", "orange")
         .attr("fill", "yellow")
-        .attr("r", d => {
+
+    vis.nodes.attr("r", d => {
             return vis.cScale(d.count);
         })
         .attr("cx", d => {

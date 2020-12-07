@@ -50,8 +50,16 @@ function loadData() {
                 }
             });
         });
+
+        var maxCount = 0;
+        var minCount = 0;
+        for(var i = 0; i < 6; i++) {
+            maxCount = Math.max(maxCount, Math.max(...Object.values(g[i])));
+            minCount = Math.min(minCount, Math.min(...Object.values(g[i])));
+        }
+
         geoBackgroud = new GeoBackground(v[4]);
-        userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, g[0]);
+        userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, g[0], maxCount, minCount);
         console.log("start...")
         userGrowth = new UserGrowth(v[2], v[3]);
     });
