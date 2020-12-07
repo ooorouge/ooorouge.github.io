@@ -26,7 +26,7 @@ function indexInit() {
 }
 
 function loadData() {
-    var files = ["data/geo.csv", "data/clean_survey_all.csv"];
+    var files = ["data/geo.csv", "data/clean_survey_all.csv", "data/userCreation.csv", "data/userLastAccess.csv"];
     var promises = [];
 
     files.forEach(f => {
@@ -50,8 +50,10 @@ function loadData() {
                 }
             });
         });
-        geoBackgroud = new GeoBackground(v[2]);
+        geoBackgroud = new GeoBackground(v[4]);
         userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, g[0]);
+        console.log("start...")
+        userGrowth = new UserGrowth(v[2], v[3]);
     });
 }
 
@@ -63,6 +65,7 @@ function updateSpecificYear(whichone) {
     // userBUndle.instance.wrangleData();
     userBundle.year = userTotal[whichone];
     userBundle.wrangleData();
+    userGrowth.updateVis(whichone);
 }
 
 function updateTags() {

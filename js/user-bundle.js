@@ -25,7 +25,7 @@ UserBundle.prototype.initVis = function() {
     // one for usr growth and inactive, another one for top reputation
 
     // Init svg for usr growth
-    d3.select("#growth").append("img").attr("src", "images/usergrowth.png").attr("width", 500).attr("height", 270);
+    //d3.select("#growth").append("img").attr("src", "images/usergrowth.png").attr("width", 500).attr("height", 270);
     
 
     // Init svg for top usr
