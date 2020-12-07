@@ -9,7 +9,8 @@ function EdgeBundlingChart(parentElement) {
 EdgeBundlingChart.prototype.initVis = function() {
     let vis = this;
 
-    vis.margin = {top: 80, right: 70, bottom: 70, left: 70};
+    // vis.margin = {top: 80, right: 70, bottom: 70, left: 70};
+	vis.margin = {top: 80, right: 20, bottom: 20, left: 70};
     vis.height = 600;
     vis.width = 600;
 
