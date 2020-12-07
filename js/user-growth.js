@@ -117,8 +117,8 @@ UserGrowth.prototype.updateVis = function(i) {
     if(i < 5) {
         vis.x.domain([vis.parseTime(1), vis.parseTime(12)]);
     } else {
-        vis.x.domain([vis.parseTime(1), vis.parseTime(10)]);
-        vis.mergeData[i] = vis.mergeData[i].slice(0, 10);
+        vis.x.domain([vis.parseTime(1), vis.parseTime(9)]);
+        vis.mergeData[i] = vis.mergeData[i].slice(0, 9);
     }
 
 
