@@ -152,9 +152,10 @@ UserGrowth.prototype.updateVis = function(i) {
     users.enter().append("path")
         .attr("class", "area")
         .merge(users)
+	.attr("transform", "translate(1, 0)")
         .style("fill", function(d,i) {
             if(i == 0) {
-                return "lightgrey";
+                return "lightgray";
             }
             return "lightgreen";
         })

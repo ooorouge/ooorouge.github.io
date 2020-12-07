@@ -5,6 +5,7 @@ var postBundle;
 var userTotal;
 var userGeoData = {};
 var userGrowthData;
+var popularUserChart;
 
 function indexInit() {
     
@@ -62,6 +63,8 @@ function loadData() {
         userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, g[0], maxCount, minCount);
         console.log("start...")
         userGrowth = new UserGrowth(v[2], v[3]);
+	popularUserChart = new PopularUserChart("top-user");
+	popularUserChart.wrangleData(2015);
     });
 }
 
@@ -74,6 +77,7 @@ function updateSpecificYear(whichone) {
     userBundle.year = userTotal[whichone];
     userBundle.wrangleData();
     userGrowth.updateVis(whichone);
+    popularUserChart.wrangleData(2015 + whichone);
 }
 
 function updateTags() {

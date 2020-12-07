@@ -33,8 +33,6 @@ UserBundle.prototype.initVis = function() {
     
 
     // Init svg for top usr
-    d3.select("#top-user").append("img").attr("src", "images/topusers.png").attr("width", 500).attr("height", 270);
-
     vis.wrangleData();
 }
 
