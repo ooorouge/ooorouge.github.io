@@ -58,13 +58,13 @@ PopularUserChart.prototype.updateVis = function() {
 	.attr("x", 1)
 	.attr("y", d => vis.y(d.name))
 	.transition()
-	.duration(2000)
+	.duration(300)
 	.attr("width", d => vis.x(d.rep))
-	.attr("fill", "rgba(119, 51, 255, 0.4)")
-	.attr("stroke", "rgb(119, 51, 255)");
+	.attr("fill", "rgba(82, 133, 236)")
+	.attr("stroke", "rgb(199, 51, 255, 0.4)");
 
     rects.transition()
-	.duration(2000)
+	.duration(300)
 	.attr("width", d => vis.x(d.rep))
 	.attr("y", d => vis.y(d.name));
 
@@ -74,6 +74,6 @@ PopularUserChart.prototype.updateVis = function() {
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis")
 	.transition()
-	.duration(2000)
+	.duration(300)
 	.call(vis.yAxis);
 }

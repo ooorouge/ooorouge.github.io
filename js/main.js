@@ -11,7 +11,7 @@ function indexInit() {
     
     $(".section").height($(window).height()-50);
     $(".description").height($(window).height()-50);
-    $("#submit-tags").on("click", updateTags);
+    $("#submit-tags").on("click", resetTag);
     $("#year-slider").on("input", event => {
 
         // TODO: change post charts accordingly.
@@ -78,6 +78,18 @@ function updateSpecificYear(whichone) {
     userBundle.wrangleData();
     userGrowth.updateVis(whichone);
     popularUserChart.wrangleData(2015 + whichone);
+}
+
+function resetTag() {
+    const checkboxes = document.querySelectorAll('input[name="tag"]');
+    checkboxes.forEach( checkbox => {
+        if (checkbox.value != "java" && checkbox.value != "python") {
+            $(checkbox).prop("checked", false);
+        } else {
+            $(checkbox).prop("checked", true);
+        }
+    });
+    updateTags();
 }
 
 function updateTags() {
