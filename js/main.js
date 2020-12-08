@@ -74,6 +74,10 @@ function updateSpecificYear(whichone) {
     // param: whichone : Integer, example: 0 means 2015, 1 means 2016, etc
     // userBundle.instance.something = newData;
     // userBUndle.instance.wrangleData();
+    $(".d3-tip.n").remove();
+    $("#title-user-description").html("User Distribution " + String(2015 + whichone))
+    $("#title-user-growth").html("Accumulated User Growth " + String(2015 + whichone))
+    $("#title-top-user").html("Top Users " + String(2015 + whichone))
     userBundle.year = userTotal[whichone];
     userBundle.wrangleData();
     userGrowth.updateVis(whichone);
@@ -171,14 +175,15 @@ $(document).ready(function() {
     console.log(triggers);
     $window.on('scroll', function() {
         var scrollTop = document.documentElement.scrollTop;
-        if (scrollTop > div1_top/2 && (scrollTop + window.innerHeight) < (div1_bottom + div3_height/2)) {
-            div2.addClass("show");
+        div2.addClass("show");
+        if (scrollTop > (div1_top - window.innerHeight * 0.15) && (scrollTop + window.innerHeight) < (div1_bottom + window.innerHeight * 0.15)) {
+            div2.css({"z-index": 1,});
         } else {
-            div2.removeClass('show');
+            div2.css({"z-index": -3});
         }
         // on scroll change user chart
         for (var i = 1; i < 6; ++i) {
-            if (scrollTop < boundaries[0]) {
+            if (scrollTop < (boundaries[0] + 0.1 * window.innerHeight)) {
                 for (var _j = 1; _j < 6; ++_j) {
                     triggers[_j] = false;
                 }
@@ -190,7 +195,7 @@ $(document).ready(function() {
 
                 break; // no need for another round of if-else check;
             }
-            if (scrollTop >= boundaries[i-1] && scrollTop < boundaries[i]) {
+            if (scrollTop >= (boundaries[i-1] +  + 0.1 * window.innerHeight) && scrollTop < (boundaries[i] + 0.1 * window.innerHeight)) {
                 for (var _k = 0; _k < 6; ++_k) {
                     triggers[_k] = false;
                 }

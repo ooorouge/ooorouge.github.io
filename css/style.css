@@ -261,6 +261,7 @@ video {
 }
 
 #map {
+    z-index: 1;
     opacity: 0;
     visibility: hidden;
     transition: visibility 0.5s, opacity 0.5s;
@@ -306,9 +307,9 @@ video {
 /*}*/
 
 
-/*#tags-trending {*/
-/*    padding-top: 20px;*/
-/*}*/
+#tags-trending {
+    background-color: white;
+}
 
 #tags-area {
     /*float: right;*/
