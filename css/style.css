@@ -113,12 +113,13 @@ video {
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
+    display: block; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     /*padding-top: 100px; !* Location of the box *!*/
+    margin-top: 100px;
     left: 0;
-    top: 0;
+    top: 100px;
     width: 100%; /* Full width */
     height: auto;
     /*height: 100%; !* Full height *!*/
@@ -155,12 +156,16 @@ video {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    /*background-color: #5cb85c;*/
+    background-color: #B0C4DE;
     color: white;
     float: top;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+    padding: 2px 16px;
+    font-size: 16px;
+}
 
 .modal-footer {
     padding: 2px 16px;

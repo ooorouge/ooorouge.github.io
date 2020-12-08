@@ -76,7 +76,7 @@ function updateSpecificYear(whichone) {
     // userBUndle.instance.wrangleData();
     $(".d3-tip.n").remove();
     $("#title-user-description").html("User Distribution " + String(2015 + whichone))
-    $("#title-user-growth").html("Accumulated User Growth " + String(2015 + whichone))
+    $("#title-user-growth").html("Accumulated Users " + String(2015 + whichone))
     $("#title-top-user").html("Top Users " + String(2015 + whichone))
     userBundle.year = userTotal[whichone];
     userBundle.wrangleData();
