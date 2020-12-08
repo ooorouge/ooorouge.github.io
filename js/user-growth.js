@@ -8,7 +8,7 @@ UserGrowth = function(userCreation, userLastAccess) {
 UserGrowth.prototype.initVis = function() {
     var vis = this;
 
-    vis.svgMargin = {top: 20, bottom: 20, left: 0, right: 20};
+    vis.svgMargin = {top: 30, bottom: 20, left: 0, right: 20};
     vis.svgWidth = 380 - vis.svgMargin.left - vis.svgMargin.right;
     vis.svgHeight = 200 - vis.svgMargin.top - vis.svgMargin.bottom;
     vis.svg = d3.select("#growth")
@@ -153,6 +153,7 @@ UserGrowth.prototype.updateVis = function(i) {
         .attr("class", "area")
         .merge(vis.users)
         .style("fill-opacity", 0.3)
+	.attr("transform", "translate(1, 0)")
         .transition()
         .duration(300)
         .style("fill", function(d,i) {
