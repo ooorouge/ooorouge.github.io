@@ -76,4 +76,6 @@ PopularUserChart.prototype.updateVis = function() {
 	.transition()
 	.duration(300)
 	.call(vis.yAxis);
+
+    //vis.svg.append("text").attr("x", vis.svgWidth-100).attr("y", vis.svgHeight-100).attr("fill", "black").text("Reputation");
 }
