@@ -433,3 +433,25 @@ video {
   left: 0;
 }
 
+/* tooltip for map */
+.maptooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.maptooltip .maptooltiptext {
+  visibility: hidden;
+  font-size: 10px;
+  width: 200px;
+  background-color: rgb(255, 255, 255);
+  color: #000;
+  text-align: left;
+  padding: 5px;
+  left: 105%;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.maptooltip:hover .maptooltiptext {
+  visibility: visible;
+}
