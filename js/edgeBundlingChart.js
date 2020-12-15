@@ -34,7 +34,15 @@ EdgeBundlingChart.prototype.initVis = function() {
 
     // define the curve link between nodes
     vis.curve = d3.line()
-	.curve(d3.curveBundle.beta(0.75));  
+	.curve(d3.curveBundle.beta(0.75));
+
+    // add the rank arrow
+    var arrowStartA = 0
+    var arrowArc = d3.arc()
+    .innerRadius(0)
+    .outerRadius(100)
+    .startAngle(0)
+    .endAngle(Math.PI / 2);
 }
 
 EdgeBundlingChart.prototype.wrangleData = function(data) {
@@ -68,16 +76,14 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
     vis.wrangleData(data);
 
     // add the text
-    let text = vis.svg.selectAll("text")
+    let text = vis.svg.selectAll(".tag")
 	.data(vis.data.nodes)
 	.join(
 	    enter => enter.append("text")
+		.attr("class", "tag")
 	)
 	.attr("x", d => d.x)
 	.attr("y", d => {
-	    if(d.angle > Math.PI/2 || d.angle < - Math.PI / 2) {
-		return d.y + 5;
-	    }
 	    return d.y + 5;
 	})
 	.attr("transform", d => {
@@ -135,6 +141,8 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
 	vis.svg.selectAll(".n_" + tn)
 	    .attr("font-weight", "bold")
 	    .attr("fill", "#cc3300");
+	d3.select("#tags").selectAll(".c_" + tn)
+	    .attr("fill", "rgba(150, 16, 69, 0.5)");
     }
 
     function out(event, d) {
@@ -146,5 +154,7 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
 	vis.svg.selectAll(".n_" + tn)
 	    .attr("font-weight", null)
 	    .attr("fill", "black");
+	d3.select("#tags").selectAll(".c_" + tn)
+	    .attr("fill", "rgba(150, 16, 69, 0.2)");
     }
 }

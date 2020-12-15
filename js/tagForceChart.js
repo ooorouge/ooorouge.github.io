@@ -51,7 +51,9 @@ TagForceChart.prototype.updateVis = function(data) {
 	.attr("class", "d3-tip")
 	.direction("n")
 	.offset([-5, 0])
-	.html((event, d) => d.tagName);
+	.html((event, d) => {
+	    return "<ul><li>Tag name: " + d.tagName + "</li><li>Annual count: " + d.count + "</li></ul>"
+	});
 
     vis.svg.call(tip);
 
@@ -73,7 +75,8 @@ TagForceChart.prototype.updateVis = function(data) {
 	.join(
 	    enter => enter.append("circle")
 		.attr("r", d => vis.rScale(d.count))
-		.attr("class", "tagCircle"),
+		.attr("fill", "rgba(150, 16, 69, 0.2)")
+		.attr("class", d => {return "tagCircle c_" + d.tagName}),
 	    update => update.attr("r", d => vis.rScale(d.count))
 	)
 	.on("mouseover", over)
