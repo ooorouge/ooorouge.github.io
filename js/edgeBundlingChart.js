@@ -37,12 +37,13 @@ EdgeBundlingChart.prototype.initVis = function() {
 	.curve(d3.curveBundle.beta(0.75));
 
     // add the rank arrow
-    var arrowStartA = 0
-    var arrowArc = d3.arc()
-    .innerRadius(0)
-    .outerRadius(100)
-    .startAngle(0)
-    .endAngle(Math.PI / 2);
+    let arrowStartA = 0;
+    let arrowEndA = 70;
+    let arrowArc = d3.arc()
+	.innerRadius(arrowStartA)
+	.outerRadius(arrowEndA)
+	.startAngle(0)
+	.endAngle(Math.PI / 2);
 }
 
 EdgeBundlingChart.prototype.wrangleData = function(data) {
@@ -76,11 +77,10 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
     vis.wrangleData(data);
 
     // add the text
-    let text = vis.svg.selectAll(".tag")
+    let text = vis.svg.selectAll("text")
 	.data(vis.data.nodes)
 	.join(
 	    enter => enter.append("text")
-		.attr("class", "tag")
 	)
 	.attr("x", d => d.x)
 	.attr("y", d => {

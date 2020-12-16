@@ -386,8 +386,19 @@ video {
 }
 
 .tagCircle {
-  fill: rgba(150, 16, 69, 0.2);
   stroke: rgb(150, 16, 69);
+}
+
+#tagInstruct h4{
+  color: #80b3ff;
+}
+
+#tagInstruct {
+  color: #bfbfbf;
+}
+
+#tagInstruct:hover {
+  color: #737373;
 }
 
 /* For the post year selector */

@@ -75,10 +75,10 @@ TagForceChart.prototype.updateVis = function(data) {
 	.join(
 	    enter => enter.append("circle")
 		.attr("r", d => vis.rScale(d.count))
-		.attr("fill", "rgba(150, 16, 69, 0.2)")
-		.attr("class", d => {return "tagCircle c_" + d.tagName}),
+		.attr("fill", "rgba(150, 16, 69, 0.2)"),
 	    update => update.attr("r", d => vis.rScale(d.count))
 	)
+	.attr("class", d => {return "tagCircle c_" + d.tagName})
 	.on("mouseover", over)
 	.on("mouseout", out);
     
