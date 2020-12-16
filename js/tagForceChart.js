@@ -11,7 +11,7 @@ TagForceChart.prototype.initVis = function() {
 
     vis.margin = {top: 10, right: 20, bottom: 30, left: 20};
     vis.height = 600;
-    vis.width = 600;
+    vis.width = 590;
 
     // generate the canvas
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -93,7 +93,7 @@ TagForceChart.prototype.updateVis = function(data) {
     function over(event, d){
 	tip.show(event, d);
 	let com = d3.select("#combinations");
-	com.selectAll("path")
+	com.selectAll(".tagLinks")
 	    .attr("stroke", "rgba(150, 16, 69, 0.05)");
 	
 	let tn = d.tagName.replace(/(\+|\.|\#)/g, `\\$1`);
@@ -108,7 +108,7 @@ TagForceChart.prototype.updateVis = function(data) {
     function out(event, d){
 	tip.hide(event, d);
 	let com = d3.select("#combinations");
-	com.selectAll("path")
+	com.selectAll(".tagLinks")
 	    .attr("stroke", "rgba(150, 16, 69, 0.2)");
 	
 	let tn = d.tagName.replace(/(\+|\.|\#)/g, `\\$1`);

@@ -8,13 +8,14 @@ UserGrowth = function(userCreation, userLastAccess) {
 UserGrowth.prototype.initVis = function() {
     var vis = this;
 
-    vis.svgMargin = {top: 30, bottom: 20, left: 0, right: 20};
+    vis.svgMargin = {top: 20, bottom: 20, left: 0, right: 20};
     vis.svgWidth = 380 - vis.svgMargin.left - vis.svgMargin.right;
     vis.svgHeight = 200 - vis.svgMargin.top - vis.svgMargin.bottom;
     vis.svg = d3.select("#growth")
         .append("svg")
         .attr("width", vis.svgWidth + vis.svgMargin.left + vis.svgMargin.right)
         .attr("height", vis.svgHeight + vis.svgMargin.top + vis.svgMargin.bottom)
+	.append("g")
         .attr("transform", "translate(" + vis.svgMargin.left + "," + vis.svgMargin.top + ")")
 
     vis.x = d3.scaleTime().range([60, vis.svgWidth]);

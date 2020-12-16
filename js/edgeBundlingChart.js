@@ -10,7 +10,7 @@ EdgeBundlingChart.prototype.initVis = function() {
     let vis = this;
 
     // vis.margin = {top: 80, right: 70, bottom: 70, left: 70};
-	vis.margin = {top: 80, right: 20, bottom: 20, left: 70};
+    vis.margin = {top: 80, right: 20, bottom: 20, left: 75};
     vis.height = 600;
     vis.width = 600;
 
@@ -37,13 +37,59 @@ EdgeBundlingChart.prototype.initVis = function() {
 	.curve(d3.curveBundle.beta(0.75));
 
     // add the rank arrow
-    let arrowStartA = 0;
-    let arrowEndA = 70;
-    let arrowArc = d3.arc()
-	.innerRadius(arrowStartA)
-	.outerRadius(arrowEndA)
-	.startAngle(0)
-	.endAngle(Math.PI / 2);
+    vis.arrowPoints = 10;
+    vis.angle = d3.scaleLinear()
+	.domain([0, vis.arrowPoints - 1])
+	.range([- Math.PI / 2 - 0.11, - Math.PI / 4]);
+    
+    vis.arrowArc = d3.lineRadial()
+	.curve(d3.curveCatmullRomOpen)
+	.radius(vis.radius + 70)
+	.angle(function(d, i) { return vis.angle(i); });
+
+    // define the arrow head, cite: https://stackoverflow.com/questions/11254806/interpolate-line-to-make-a-half-circle-arc-in-d3
+    vis.svg
+	.append('defs')
+	.append('marker')
+	.attr('id', 'arrow-head')
+	.attr('viewBox', [0, 0, 6, 6])
+	.attr('refX', 3)
+	.attr('refY', 3)
+	.attr('markerWidth',6)
+	.attr('markerHeight', 6)
+	.attr('orient', 'auto')
+	.append('path')
+	.attr('d', "M1,1 L5,3 L1,5 L3,3 L1,1")
+	.attr('stroke', '#80b3ff');
+    // cite end ------------------------------------------
+
+    // define the arrow end
+    vis.svg
+	.append('defs')
+	.append('marker')
+	.attr('id', 'arrow-end')
+	.attr('viewBox', [0, 0, 6, 6])
+	.attr('refX', 0)
+	.attr('refY', 3)
+	.attr('markerWidth', 6)
+	.attr('markerHeight', 6)
+	.attr('orient', 'auto')
+	.append('path')
+	.attr('d', "M0,0 L0,3 L0,6 L1,6 L1,3, L1,0")
+	.attr('stroke', '#80b3ff');
+
+    // cite: https://stackoverflow.com/questions/11254806/interpolate-line-to-make-a-half-circle-arc-in-d3
+    vis.svg.append("path")
+	.datum(d3.range(vis.arrowPoints))
+	.attr("class", "arrowStem")
+	.attr('d', vis.arrowArc)
+	.attr('stroke', '#80b3ff')
+	.attr("stroke-width", 2)
+	.attr('marker-end', 'url(#arrow-head)')
+	.attr('marker-start', 'url(#arrow-end)')
+	.attr('fill', 'none')
+	.attr("transform", "translate("+ vis.radius + ", " + vis.radius + ")");
+    // cite end ------------------------------------------------------------------
 }
 
 EdgeBundlingChart.prototype.wrangleData = function(data) {
@@ -77,7 +123,7 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
     vis.wrangleData(data);
 
     // add the text
-    let text = vis.svg.selectAll("text")
+    let text = vis.svg.selectAll(".tagLabel")
 	.data(vis.data.nodes)
 	.join(
 	    enter => enter.append("text")
@@ -98,13 +144,13 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
 	    }
 	    return "start";
 	})
-	.attr("class", d => "n_" + d.tagName)
+	.attr("class", d => "tagLabel n_" + d.tagName)
 	.text(d => d.tagName)
 	.on("mouseover", over)
 	.on("mouseout", out);
 
     // add the link
-    let links = vis.svg.selectAll("path")
+    let links = vis.svg.selectAll(".tagLinks")
 	.data(vis.data.links)
 	.join(
 	    enter => enter.append("path")
@@ -116,7 +162,7 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
 		    return vis.curve(points);
 		})
 		.attr("class", d => {
-		    return "l_" + d.target + " l_" + d.source;
+		    return "tagLinks l_" + d.target + " l_" + d.source;
 		}),
 	    update => update.attr("stroke-width", d => vis.linkScale(d.value))
 		.attr("stroke", "rgba(150, 16, 69, 0.2)")
@@ -126,7 +172,7 @@ EdgeBundlingChart.prototype.updateVis = function(data) {
 		    return vis.curve(points);
 		})
 		.attr("class", d => {
-		    return "l_" + d.target + " l_" + d.source;
+		    return "tagLinks l_" + d.target + " l_" + d.source;
 		}),
 	    exit => exit.remove()
 	);
