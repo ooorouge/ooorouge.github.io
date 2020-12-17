@@ -97,7 +97,12 @@ function resetTag() {
 }
 
 function changeOrder(selectOrder) {
-    document.getElementById("tags-area").innerHTML = "";
+    resetTag();
+    //document.getElementById("tags-area").innerHTML = "";
+    var parent = document.getElementById("tags-area")
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
     postBundle.setTags(selectOrder.value);
 }
 

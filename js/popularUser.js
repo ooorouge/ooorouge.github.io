@@ -31,6 +31,8 @@ PopularUserChart.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis")
         .attr("transform", "translate(0, 0)");
+
+    vis.svg.append("text").attr("x", vis.svgWidth-100).attr("y", vis.svgHeight-100).attr("fill", "black").text("Reputation");
 }
 
 PopularUserChart.prototype.wrangleData = function(year) {

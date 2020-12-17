@@ -32,7 +32,36 @@ PostBundle.prototype.initVis = function() {
 
     vis.tagsByAlpha = [...tags].sort();
 
-    vis.setTags("freq");
+    var sumDic = {};
+    vis.sumData = vis.monthlyCount.forEach(function(d, i) {
+        tags.forEach(function(a) {
+            var curr = +d[a];
+            if(i == 0) {
+                sumDic[a] = curr;
+            } else {
+                sumDic[a] = sumDic[a] + curr;
+            }
+        })
+    })
+
+    vis.tagsByFreqSum = [...tags].sort(function(a, b) {
+        return sumDic[b] - sumDic[a];
+    })
+
+    console.log(tags)
+    console.log(vis.tagsByFreqSum)
+
+    vis.setTags("init");
+
+    // var checkboxs = document.getElementById("tags-area").getElementsByClassName("input");
+    // // for(var i = 0; i < checkboxs.length; i++) {
+    // //     // if(checkboxs[i].value == "java" || checkboxs[i].value == "python") {
+    // //     //     checkboxs[i].checked = true;
+    // //     // }
+    // //     checkboxs[]
+    // // }
+    // checkboxs[1].checked = true;
+    // checkboxs[2].checked = true;
 
     vis.monthlyMargin = {top: 30, bottom: 30, left: 30, right : 30};
     vis.monthlyWidth = 1200 - vis.monthlyMargin.left - vis.monthlyMargin.right;
@@ -69,8 +98,8 @@ PostBundle.prototype.initVis = function() {
         .attr("class", "yAxis")
         .attr("transform", "translate(40, 0)")
 
-    vis.monthlySvg.append("text").attr("x", 45).attr("y", 10).attr("fill", "black").text("Number of posts");
-
+    vis.monthlySvg.append("text").attr("x", 50).attr("y", 10).attr("fill", "black").text("Number of posts");
+    vis.monthlySvg.append("text").attr("x", vis.monthlyWidth - 50).attr("y", vis.monthlyHeight - 15).attr("fill", "black").text("Month");
 
     vis.focus = vis.monthlySvg.append("g")
         .attr("class", "focus")
@@ -108,7 +137,8 @@ PostBundle.prototype.setTags = function(order) {
     if(order == "alpha") {
         tags = vis.tagsByAlpha;
     } else {
-        tags = vis.tagsByFirstFreq;
+        //tags = vis.tagsByFirstFreq;
+        tags = vis.tagsByFreqSum;
     }
 
     tags.forEach((d, i) => {
@@ -116,8 +146,10 @@ PostBundle.prototype.setTags = function(order) {
         checkbox.type = 'checkbox';
         checkbox.name = 'tag';
         checkbox.value = d;
-        if(d == "java" || d == "python") {
-            checkbox.checked = true;
+        if(order = "init") {
+            if(d == "java" || d == "python") {
+                checkbox.checked = true;
+            }
         }
 
         var label = document.createElement('label')
