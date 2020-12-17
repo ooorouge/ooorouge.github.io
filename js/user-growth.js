@@ -30,8 +30,6 @@ UserGrowth.prototype.initVis = function() {
         .attr("class", "y-axis")
         .attr("transform", "translate(60, 0)");
 
-    vis.svg.append("text").attr("x", 100).attr("y", 50).attr("fill", "black").text("Number of users");
-
     vis.legend = vis.svg.append("g")
         .attr("font-family", "sans-serif")
         .attr("font-size", 10)
@@ -58,6 +56,15 @@ UserGrowth.prototype.initVis = function() {
         .attr("dy", "0.32em")
         .text(function(d) { return d; });
 
+    vis.svg.append("text")
+	.attr("class", "label")
+	.attr("x", 60)
+	.attr("y", -6)
+	.attr("fill", "black")
+	.attr("font-size", 12)
+	.attr("font-weight", "normal")
+	.attr("text-anchor", "middle")
+	.text("Number of users");
 
     vis.wrangleData();
 }

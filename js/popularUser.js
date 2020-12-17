@@ -32,7 +32,15 @@ PopularUserChart.prototype.initVis = function() {
         .attr("class", "y-axis")
         .attr("transform", "translate(0, 0)");
 
-    vis.svg.append("text").attr("x", vis.svgWidth-100).attr("y", vis.svgHeight-100).attr("fill", "black").text("Reputation");
+    vis.svg.append("text")
+	.attr("class", "label")
+	.attr("x", vis.svgWidth - 15)
+	.attr("y", vis.svgHeight - 3)
+	.attr("fill", "black")
+	.attr("font-size", 12)
+	.attr("font-weight", "normal")
+	.attr("text-anchor", "middle")
+	.text("Reputation");
 }
 
 PopularUserChart.prototype.wrangleData = function(year) {
