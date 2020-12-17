@@ -30,6 +30,8 @@ UserGrowth.prototype.initVis = function() {
         .attr("class", "y-axis")
         .attr("transform", "translate(60, 0)");
 
+    vis.svg.append("text").attr("x", 100).attr("y", 50).attr("fill", "black").text("Number of users");
+
     vis.legend = vis.svg.append("g")
         .attr("font-family", "sans-serif")
         .attr("font-size", 10)
