@@ -28,26 +28,11 @@ PostBundle.prototype.initVis = function() {
         return key != "month";
     })
 
-    tags.forEach((d, i) => {
-        var checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.name = 'tag';
-        checkbox.value = d;
-        if(d == "java" || d == "python") {
-            checkbox.checked = true;
-        }
+    vis.tagsByFirstFreq = tags;
 
-        var label = document.createElement('label')
-        label.htmlFor = d;
-        label.appendChild(document.createTextNode(d));
+    vis.tagsByAlpha = [...tags].sort();
 
-        var br = document.createElement('br');
-
-        var container = document.getElementById("tags-area");
-        var theDiv = container.appendChild(document.createElement("div"));
-        theDiv.appendChild(checkbox);
-        theDiv.appendChild(document.createTextNode(d));
-    })
+    vis.setTags("freq");
 
     vis.monthlyMargin = {top: 30, bottom: 30, left: 30, right : 30};
     vis.monthlyWidth = 1200 - vis.monthlyMargin.left - vis.monthlyMargin.right;
@@ -115,6 +100,38 @@ PostBundle.prototype.initVis = function() {
     vis.wrangleData(vis.topCountData);
 }
 
+PostBundle.prototype.setTags = function(order) {
+    var vis = this;
+
+    var tags = [];
+
+    if(order == "alpha") {
+        tags = vis.tagsByAlpha;
+    } else {
+        tags = vis.tagsByFirstFreq;
+    }
+
+    tags.forEach((d, i) => {
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'tag';
+        checkbox.value = d;
+        if(d == "java" || d == "python") {
+            checkbox.checked = true;
+        }
+
+        var label = document.createElement('label')
+        label.htmlFor = d;
+        label.appendChild(document.createTextNode(d));
+
+        var br = document.createElement('br');
+
+        var container = document.getElementById("tags-area");
+        var theDiv = container.appendChild(document.createElement("div"));
+        theDiv.appendChild(checkbox);
+        theDiv.appendChild(document.createTextNode(d));
+    })
+}
 
 
 PostBundle.prototype.wrangleData = function(data) {

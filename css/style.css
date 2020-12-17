@@ -322,7 +322,7 @@ video {
 
 #tags-area {
     /*float: right;*/
-    /*width: 100px;*/
+    /*width: 200px;*/
     /*padding-top: 50px;*/
     height: 500px;
     border-style: solid;
@@ -332,8 +332,14 @@ video {
 
 }
 
+
 #select-instr {
     margin-bottom: 20px;
+}
+
+#order {
+    margin-left: 20px;
+    width: 120px;
 }
 
 #trends {

@@ -87,13 +87,18 @@ function updateSpecificYear(whichone) {
 function resetTag() {
     const checkboxes = document.querySelectorAll('input[name="tag"]');
     checkboxes.forEach( checkbox => {
-        if (checkbox.value != "java" && checkbox.value != "python") {
+        // if (checkbox.value != "java" && checkbox.value != "python") {
             $(checkbox).prop("checked", false);
-        } else {
-            $(checkbox).prop("checked", true);
-        }
+        // } else {
+        //     $(checkbox).prop("checked", true);
+        // }
     });
     updateTags();
+}
+
+function changeOrder(selectOrder) {
+    document.getElementById("tags-area").innerHTML = "";
+    postBundle.setTags(selectOrder.value);
 }
 
 function updateTags() {
