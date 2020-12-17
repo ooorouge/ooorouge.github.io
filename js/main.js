@@ -202,7 +202,7 @@ $(document).ready(function() {
                 }
                 triggers[0] = true;
                 actionAlreadyTaken = (2015 == YearOfLastScroll);
-
+                updateSpecificYear(0);
                 // Just for your convenience, if you feel like you don't need it anymore, delete it.
                 // console.log("==== 2015"  + actionAlreadyTaken); 
 
