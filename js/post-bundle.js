@@ -84,6 +84,7 @@ PostBundle.prototype.initVis = function() {
         .attr("class", "yAxis")
         .attr("transform", "translate(40, 0)")
 
+    vis.monthlySvg.append("text").attr("x", 45).attr("y", 10).attr("fill", "black").text("Number of posts");
 
 
     vis.focus = vis.monthlySvg.append("g")
@@ -198,7 +199,6 @@ PostBundle.prototype.updateVis = function() {
             return color(d.tag);
         })
 
-    vis.monthlySvg.append("text").attr("x", 45).attr("y", 10).attr("fill", "black").text("Number of posts");
 
 
     var labels = vis.focus.selectAll(".lineHoverText")

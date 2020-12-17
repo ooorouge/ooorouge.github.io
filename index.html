@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evolution of Stack Overflow</title>
-<!--    <link rel="stylesheet" href="css/bootstrap.css">-->
+    <!--    <link rel="stylesheet" href="css/bootstrap.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <!-- They are not bootstrap but just icon library -->
@@ -51,7 +51,7 @@
                 <h2>Evolution of Stack Overflow</h2>
                 <span class="close">&times;</span>
             </div>
-<!--            <span class="close">&times;</span>-->
+            <!--            <span class="close">&times;</span>-->
             <div class="modal-body">
                 <p>This visualization tool is designed for those who are interested in the development of Stack Overflow. We mainly visualize user data and post data as belows.</p>
                 <strong>About users</strong>
@@ -68,24 +68,47 @@
 
     </div>
 
-<!--    <div class="modal" tabindex="-1" id="instr">-->
-<!--        <div class="modal-dialog">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title">Modal title</h5>-->
-<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    <p>This Tools is designed for those who are interested in the development of Stack Overflow. We mainly visualize user data and post data as belows.</p>-->
-<!--                    <p>About users</p>-->
-<!--                    <p>The world map about user distribution, the stacked area chart presenting user growth and the bar chart revealing the top 10 users below will be updated when you scroll all the way down to 2020.</p>-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-primary">Close</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div id="postsModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h2>How to explore tags and their combinations?</h2>
+                <span class="close">&times;</span>
+            </div>
+            <!--            <span class="close">&times;</span>-->
+            <div class="modal-body">
+                This page shows the top 70 popular tags in the selected year and the frequencies of two tags used in the same post.<br><br>
+                Top: The radius of the blue circle represents the number of total posts that year. They are clickable to change years. <br><br>
+                Left: The radius of the red circle shows the number of that tag being used that year. Please hover over it to know further details. <br><br>
+                Right: The text in the right chart is also hoverable to focus the correlation between that tag and other tags, the wider the link is, the more frequent they are used together. <br><br>
+                Arrow: The popularity of the corresponding tag drops clockwise along the arrow.
+            </div>
+            <div class="modal-footer">
+                <span class="close">Close</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!--    <div class="modal" tabindex="-1" id="instr">-->
+    <!--        <div class="modal-dialog">-->
+    <!--            <div class="modal-content">-->
+    <!--                <div class="modal-header">-->
+    <!--                    <h5 class="modal-title">Modal title</h5>-->
+    <!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+    <!--                </div>-->
+    <!--                <div class="modal-body">-->
+    <!--                    <p>This Tools is designed for those who are interested in the development of Stack Overflow. We mainly visualize user data and post data as belows.</p>-->
+    <!--                    <p>About users</p>-->
+    <!--                    <p>The world map about user distribution, the stacked area chart presenting user growth and the bar chart revealing the top 10 users below will be updated when you scroll all the way down to 2020.</p>-->
+    <!--                </div>-->
+    <!--                <div class="modal-footer">-->
+    <!--                    <button type="button" class="btn btn-primary">Close</button>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <div class="row">
         <div id="first-blank" class="blank">
@@ -112,7 +135,7 @@
             <p id="project-title">Evolution of <span id="title-stack" class="animated-title">Stack</span> <span id="title-overflow" class="animated-title">Overflow</span></p>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="blank">
             blank
@@ -123,144 +146,163 @@
         <div class="col-7">
             <div class="canvas worldmap" id="map">
                 <div class="row">
-                    <h3 id="title-user-description">User Distribution</h3>
                     <h3>
-                      <div class="maptooltip"> &nbsp;ⓘ
-                        <span class="maptooltiptext">
-                          [Country:Number of Users] You can think of these numbers as an indicator linearly related to real data.
+                        <span id="title-user-description">User Distribution 2015</span>
+                        <span class="maptooltip" style="font-size: 14px">&nbsp;ⓘ
+                            <span class="maptooltiptext">
+                                Sample data from survey serve as indicators linearly related to real data.
+                            </span>
                         </span>
-                      </div>
                     </h3>
+                    <!--                    <h3><span class="info-tooltip" data-toggle="tooltip" data-placement="bottom" title="[Country:Number of Users] You can think of these numbers as an indicator linearly related to real data.">  ⓘ</span></h3>-->
+
+
+                    <!--                    <h3>-->
+                    <!--                      <div class="maptooltip"> &nbsp;ⓘ-->
+                    <!--                        <span class="maptooltiptext">-->
+                    <!--                          [Country:Number of Users] You can think of these numbers as an indicator linearly related to real data.-->
+                    <!--                        </span>-->
+                    <!--                      </div>-->
+                    <!--                    </h3>-->
                 </div>
                 <div class="row">
-                  <div id="geomap"></div>
+                    <div id="geomap"></div>
                 </div>
                 <div class="row">
-                  <div class="col-6">
-                    <h3 id="title-user-growth">Accumulated Users </h3>
-                  </div>
-                  <div class="col-6">
-                    <h3 id="title-top-user">Top Users</h3>
-                  </div>
+                    <div class="col-6">
+                        <h3 id="title-user-growth" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Accumulated Users </h3>
+                    </div>
+                    <div class="col-6">
+                        <h3 id="title-top-user">Top Users</h3>
+                    </div>
                 </div>
                 <div class="row">
-                  <div class="col-6">
-                    <div id="growth"></div>
-                  </div>
-                  <div class="col-6">
-                    <div id="top-user"></div>
-                  </div>
+                    <div class="col-6">
+                        <div id="growth"></div>
+                    </div>
+                    <div class="col-6">
+                        <div id="top-user"></div>
+                    </div>
                 </div>
 
             </div>
         </div>
         <div class="col-5">
 
-          <div class="blank">
-            blank
-          </div>
-	  
-          <div class="section users" id="user-2015">
-            <div class="description">
-              <p class="message">2015 User Report</p>
-              <p class="message">In this year we got ...</p>
-              <p class="message">1,253,581 new users</p>
-              <p class="message">938,541 inactive users</p>
-              <p class="message">4,889,410 users in total</p>
-	      <p class="message">Many users come from the U.S.,the U.K., German and India </p>
+            <div class="blank">
+                blank
             </div>
-          </div>
 
-          <div class="blank">
-            blank
-          </div>
-
-          <div class="section users" id="user-2016">
-            <div class="description">
-              <p class="message">2016 User Report</p>
-              <p class="message">In this year we got ...</p>
-              <p class="message">1,517,163 new users</p>
-              <p class="message">1,011,608 inactive users</p>
-              <p class="message">6,406,573 users in total</p>
-	      <p class="message">The distribution of the users is quite stable. So are the top users.</p>
+            <div class="section users" id="user-2015">
+                <div class="description">
+                    <strong class="message">2015 User Report</strong>
+                    <p class="message">In this year we got ...</p>
+                    <p class="message">1,253,581 new users</p>
+                    <p class="message">938,541 inactive users</p>
+                    <p class="message">4,889,410 users in total</p>
+                    <p class="message">Many users come from the U.S.,the U.K., German and India </p>
+                </div>
             </div>
-          </div>
 
-          <div class="blank">
-            blank
-          </div>
-
-          <div class="section users" id="user-2017">
-            <div class="description">
-              <p class="message">2017 User Report</p>
-              <p class="message">In this year we got ...</p>
-              <p class="message">1,728,703 new users</p>
-              <p class="message">1,382,156 inactive users</p>
-              <p class="message">8,135,276 users in total</p>
+            <div class="blank">
+                blank
             </div>
-          </div>
 
-          <div class="blank">
-            blank
-          </div>
-
-          <div class="section users" id="user-2018">
-            <div class="description">
-              <p class="message">2018 User Report</p>
-              <p class="message">In this year we got ...</p>
-              <p class="message">1,646,805 new users</p>
-              <p class="message">1,642,942 inactive users</p>
-              <p class="message">9,782,081 users in total</p>
-	      <p class="message">An upsurge in the number of users. Many of the users became inactive, while the top users continue to contribute to the forum.</p>
+            <div class="section users" id="user-2016">
+                <div class="description">
+                    <strong class="message">2016 User Report</strong>
+                    <p class="message">In this year we got ...</p>
+                    <p class="message">1,517,163 new users</p>
+                    <p class="message">1,011,608 inactive users</p>
+                    <p class="message">6,406,573 users in total</p>
+                    <p class="message">The distribution of the users is quite stable. So are the top users.</p>
+                </div>
             </div>
-          </div>
 
-          <div class="blank">
-            blank
-          </div>
-
-          <div class="section users" id="user-2019">
-            <div class="description">
-              <p class="message">2019 User Report</p>
-              <p class="message">In this year we got ...</p>
-              <p class="message">1,721,982 new users</p>
-              <p class="message">2,014,660 inactive users</p>
-              <p class="message">11,504,063 users in total</p>
+            <div class="blank">
+                blank
             </div>
-          </div>
 
-          <div class="blank">
-            blank
-          </div>
-
-          <div class="section users" id="user-2020">
-            <div class="description">
-              <p class="message">2020 User Report</p>
-              <p class="message">Up to now we got ...</p>
-              <p class="message">1,934,355 new users</p>
-              <p class="message">4,676,254 inactive users</p>
-              <p class="message">13,438,418 users in total</p>
+            <div class="section users" id="user-2017">
+                <div class="description">
+                    <strong class="message">2017 User Report</strong>
+                    <p class="message">In this year we got ...</p>
+                    <p class="message">1,728,703 new users</p>
+                    <p class="message">1,382,156 inactive users</p>
+                    <p class="message">8,135,276 users in total</p>
+                </div>
             </div>
-          </div>
+
+            <div class="blank">
+                blank
+            </div>
+
+            <div class="section users" id="user-2018">
+                <div class="description">
+                    <strong class="message">2018 User Report</strong>
+                    <p class="message">In this year we got ...</p>
+                    <p class="message">1,646,805 new users</p>
+                    <p class="message">1,642,942 inactive users</p>
+                    <p class="message">9,782,081 users in total</p>
+                    <p class="message">An upsurge in the number of users. Many of the users became inactive, while the top users continue to contribute to the forum.</p>
+                </div>
+            </div>
+
+            <div class="blank">
+                blank
+            </div>
+
+            <div class="section users" id="user-2019">
+                <div class="description">
+                    <strong class="message">2019 User Report</strong>
+                    <p class="message">In this year we got ...</p>
+                    <p class="message">1,721,982 new users</p>
+                    <p class="message">2,014,660 inactive users</p>
+                    <p class="message">11,504,063 users in total</p>
+                </div>
+            </div>
+
+            <div class="blank">
+                blank
+            </div>
+
+            <div class="section users" id="user-2020">
+                <div class="description">
+                    <strong class="message">2020 User Report</strong>
+                    <p class="message">Up to now we got ...</p>
+                    <p class="message">1,934,355 new users</p>
+                    <p class="message">4,676,254 inactive users</p>
+                    <p class="message">13,438,418 users in total</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="row">
-      <div class="blank" id="post-blank">
-        blank
-      </div>
+        <div class="blank" id="post-blank">
+            blank
+        </div>
     </div>
 
     <div class="row mx-3"  id="posts">
-      <div id="posts-title">
-        <h1>About Posts</h1>
-        <h3>Select a year, explore popular tags and the associated tag combinations in posts
-	  <div class="maptooltip">&nbsp; ⓘ
-            <span class="maptooltiptext">
-	      Posts data contains data from 2008-07 to 2020-08, inclusive.
-            </span>
-            </div>
-	  </h3>
+        <div id="posts-title">
+            <h1>
+                About Posts
+                <!--            <div class="maptooltip">&nbsp; ⓘ-->
+                <!--                <span class="maptooltiptext">-->
+                <!--                    Posts data contains data from 2008-07 to 2020-08, inclusive.-->
+                <!--                </span>-->
+                <!--            </div>-->
+                <span class="maptooltip" style="font-size: 16px">&nbsp; ⓘ
+                    <span class="maptooltiptext">
+                        Posts data contains data from 2008-07 to 2020-08, inclusive.
+                    </span>
+                </span>
+            </h1>
+
+            <h3>Select a year, explore popular tags and the associated tag combinations in posts
+                <button id="posts-info-icon">ⓘ</button>
+            </h3>
         </div>
         <div class="col-2"></div>
         <div class="section">
@@ -268,16 +310,16 @@
             <div id="tags"></div>
             <div id="combinations"></div>
         </div>
-	<div class="col-2">
-	  <div id="tagInstruct">
-	    <h4>Instructions</h4>
-	    This page shows the top 70 popular tags in the selected year and the frequencies of two tags used in the same post.<br><br>
-	    Top: The radius of the blue circle represents the number of total posts that year. They are clickable to change years. <br><br>
-	    Left: The radius of the red circle shows the number of that tag being used that year. Please hover over it to know further details. <br><br>
-	    Right: The text in the right chart is also hoverable to focus the correlation between that tag and other tags, the wider the link is, the more frequent they are used together. <br><br>
-	    Arrow: The popularity of the corresponding tag drops clockwise along the arrow.
-	  </div>
-	</div>
+        <!--	<div class="col-2">-->
+        <!--	  <div id="tagInstruct">-->
+        <!--	    <h4>Instructions</h4>-->
+        <!--	    This page shows the top 70 popular tags in the selected year and the frequencies of two tags used in the same post.<br><br>-->
+        <!--	    Top: The radius of the blue circle represents the number of total posts that year. They are clickable to change years. <br><br>-->
+        <!--	    Left: The radius of the red circle shows the number of that tag being used that year. Please hover over it to know further details. <br><br>-->
+        <!--	    Right: The text in the right chart is also hoverable to focus the correlation between that tag and other tags, the wider the link is, the more frequent they are used together. <br><br>-->
+        <!--	    Arrow: The popularity of the corresponding tag drops clockwise along the arrow.-->
+        <!--	  </div>-->
+        <!--	</div>-->
     </div>
 
     <div class="row section" id="tags-trending">
@@ -300,24 +342,24 @@
     </div>
 </div>
 
-    <script src="js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
-    <script src="js/d3.min.v6.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="js/topojson.min.js"></script>
-    <script src="js/geo.js"></script>
-    <script src="js/self-animation.js"></script>
-    <script src="js/user-bundle.js"></script>
-    <script src="js/user-growth.js"></script>
-    <script src="js/popularUser.js"></script>
-    <script src="js/post-bundle.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/d3-tip.js"></script>
-    <script src="js/tagForceChart.js"></script>
-    <script src="js/edgeBundlingChart.js"></script>
-    <script src="js/postYearChart.js"></script>
-    <script src="js/tagMain.js"></script>
+<script src="js/d3.min.v6.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="js/topojson.min.js"></script>
+<script src="js/geo.js"></script>
+<script src="js/self-animation.js"></script>
+<script src="js/user-bundle.js"></script>
+<script src="js/user-growth.js"></script>
+<script src="js/popularUser.js"></script>
+<script src="js/post-bundle.js"></script>
+<script src="js/main.js"></script>
+<script src="js/d3-tip.js"></script>
+<script src="js/tagForceChart.js"></script>
+<script src="js/edgeBundlingChart.js"></script>
+<script src="js/postYearChart.js"></script>
+<script src="js/tagMain.js"></script>
 
 </body>
 </html>

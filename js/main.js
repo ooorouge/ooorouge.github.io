@@ -8,7 +8,7 @@ var userGrowthData;
 var popularUserChart;
 
 function indexInit() {
-    
+
     $(".section").height($(window).height()-50);
     $(".description").height($(window).height()-50);
     $("#submit-tags").on("click", resetTag);
@@ -63,8 +63,8 @@ function loadData() {
         userBundle = new UserBundle(geoBackgroud.svg, geoBackgroud.projection, userGeoData, g[0], maxCount, minCount);
         console.log("start...")
         userGrowth = new UserGrowth(v[2], v[3]);
-	popularUserChart = new PopularUserChart("top-user");
-	popularUserChart.wrangleData(2015);
+        popularUserChart = new PopularUserChart("top-user");
+        popularUserChart.wrangleData(2015);
     });
 }
 
@@ -116,6 +116,9 @@ function updateTags() {
 
 $(document).ready(function() {
     $(this).scrollTop(0);
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
     indexInit();
 
 
@@ -138,7 +141,12 @@ $(document).ready(function() {
     for(var i = 0; i < span.length; i++) {
         span[i].onclick = function() {
             modal.style.display = "none";
+            document.getElementById("postsModal").style.display = "none";
         }
+    }
+
+    document.getElementById("posts-info-icon").onclick = function() {
+        document.getElementById("postsModal").style.display = "block";
     }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -215,7 +223,7 @@ $(document).ready(function() {
                 updateSpecificYear(i);
                 actionAlreadyTaken = !actionAlreadyTaken;
                 YearOfLastScroll = 2015 + i;
-            } 
+            }
         }
     });
 });

@@ -130,6 +130,9 @@ video {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+#postsModal {
+    display: none}
+
 /* Modal Content */
 .modal-content {
     position: relative;
@@ -249,10 +252,10 @@ video {
 }
 
 .message {
-  margin-top: 30px;
-  margin-left: 10px;
-  font-size: 25px;
-  line-height: normal;
+    margin-top: 30px;
+    margin-left: 10px;
+    font-size: 25px;
+    line-height: normal;
 }
 
 .worldmap {
@@ -340,11 +343,11 @@ video {
 
 }
 
-.year-text { 
-  /* margin-left: 18%;*/
-  /* margin-right: 18%;*/
-  text-anchor: middle;
-  font-size: 18px;
+.year-text {
+    /* margin-left: 18%;*/
+    /* margin-right: 18%;*/
+    text-anchor: middle;
+    font-size: 18px;
 }
 
 #geomap path {
@@ -375,95 +378,111 @@ video {
 /*}*/
 
 .postYearChartLine {
-  stroke-width: 2px;
-  stroke: rgb(179, 209, 255);
-  stroke-dasharray: 5px, 5px;
+    stroke-width: 2px;
+    stroke: rgb(179, 209, 255);
+    stroke-dasharray: 5px, 5px;
 }
 
 .tagName {
-  fill: rgb(150, 16, 69);
-  font-size: 14px;
-  text-anchor: middle;
+    fill: rgb(150, 16, 69);
+    font-size: 14px;
+    text-anchor: middle;
 }
 
 .tagCircle {
-  stroke: rgb(150, 16, 69);
+    stroke: rgb(150, 16, 69);
 }
 
 #tagInstruct h4{
-  color: #80b3ff;
+    color: #80b3ff;
 }
 
 #tagInstruct {
-  color: #bfbfbf;
+    color: #bfbfbf;
 }
 
 #tagInstruct:hover {
-  color: #737373;
+    color: #737373;
 }
 
 /* For the post year selector */
 .postYearCircle {
-  fill: rgba(0, 82, 204, 0.2);
-  stroke: rgb(0, 82, 204);
+    fill: rgba(0, 82, 204, 0.2);
+    stroke: rgb(0, 82, 204);
 }
 
 .highlighted {
-  fill: rgba(0, 82, 204, 0.6);
-  stroke: rgb(0, 82, 204);
+    fill: rgba(0, 82, 204, 0.6);
+    stroke: rgb(0, 82, 204);
 }
 
 /* tooltip css for tagForce */
 /* cite from http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7 */
 .d3-tip {
-  line-height: 1;
-  padding: 6px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 4px;
-  font-size: 12px;
-  z-index: 5;
+    line-height: 1;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 5;
 }
 
 /* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
 }
 
 /* Style northward tooltips specifically */
 .d3-tip.n:after {
-  margin: -2px 0 0 0;
-  top: 100%;
-  left: 0;
+    margin: -2px 0 0 0;
+    top: 100%;
+    left: 0;
 }
 
 /* tooltip for map */
 .maptooltip {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 /* Tooltip text */
 .maptooltip .maptooltiptext {
-  visibility: hidden;
-  font-size: 10px;
-  width: 200px;
-  background-color: rgb(255, 255, 255);
-  color: #000;
-  text-align: left;
-  padding: 5px;
-  left: 105%;
+    visibility: hidden;
+    /*font-size: 10px;*/
+    font-size: 14px;
+    font-weight: normal;
+    width: 200px;
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    text-align: left;
+    padding: 5px;
+    left: 105%;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .maptooltip:hover .maptooltiptext {
-  visibility: visible;
+    visibility: visible;
 }
+
+/* tooltip for new info */
+.info-tooltip {
+    margin-left: 10px;
+    white-space:nowrap;
+    max-width: none;
+}
+
+/*.tooltip-inner {*/
+/*    white-space:nowrap;*/
+/*    max-width: 600px;*/
+/*    container: 'body';*/
+/*    data-placement: "bottom";*/
+/*}*/
