@@ -3,7 +3,7 @@ Final Project for CSE457A, url to our project: [Evolution of Stack Overflow](htt
 
 ## Overview
 
-We create a visualization that introduced the evolution of Stack Overflow which is a question and answer site for professional and enthusiast programmers. To show the evolution of Stack Overflow, we split it into three parts: users' information, 70 most popular tags used to describe questions and trends of 200 most popular tags.
+We create a visualization that introduced the evolution of Stack Overflow which is a question and answer site for professional and enthusiast programmers. To show the evolution of Stack Overflow, we split it into three parts: users' information, 70 most popular tags used to describe questions and trends of 200 most popular tags for every year.
 
 ## Code
 
