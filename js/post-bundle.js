@@ -146,7 +146,7 @@ PostBundle.prototype.setTags = function(order) {
         checkbox.type = 'checkbox';
         checkbox.name = 'tag';
         checkbox.value = d;
-        if(order = "init") {
+        if(order == "init") {
             if(d == "java" || d == "python") {
                 checkbox.checked = true;
             }
