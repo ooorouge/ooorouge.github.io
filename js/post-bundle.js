@@ -51,6 +51,10 @@ PostBundle.prototype.initVis = function() {
     console.log(tags)
     console.log(vis.tagsByFreqSum)
 
+    vis.selectedTags = [];
+    vis.selectedTags.push("java");
+    vis.selectedTags.push("python");
+
     vis.setTags("init");
 
     // var checkboxs = document.getElementById("tags-area").getElementsByClassName("input");
@@ -136,7 +140,21 @@ PostBundle.prototype.setTags = function(order) {
 
     if(order == "alpha") {
         tags = vis.tagsByAlpha;
-    } else {
+    } else if(order == "search") {
+        tags = vis.tagsBySearch;
+    } else if(order == "selected") {
+        tags = [...vis.tagsByAlpha].sort(function(a, b) {
+            var aSelected = vis.selectedTags.includes(a);
+            var bSelected = vis.selectedTags.includes(b);
+            if((aSelected && bSelected) || (!aSelected && !bSelected)) {
+                return 0;
+            } else if(aSelected) {
+                return -1;
+            } else {
+                return 1;
+            }
+        })
+    }else {
         //tags = vis.tagsByFirstFreq;
         tags = vis.tagsByFreqSum;
     }
@@ -146,10 +164,17 @@ PostBundle.prototype.setTags = function(order) {
         checkbox.type = 'checkbox';
         checkbox.name = 'tag';
         checkbox.value = d;
-        if(order == "init") {
-            if(d == "java" || d == "python") {
-                checkbox.checked = true;
-            }
+        // if(order == "init") {
+        //     if(d == "java" || d == "python") {
+        //         checkbox.checked = true;
+        //     }
+        // } else if(order == "search") {
+        //     if(vis.matchTags.includes(d)) {
+        //         checkbox.checked = true;
+        //     }
+        // }
+        if(vis.selectedTags.includes(d)) {
+            checkbox.checked = true;
         }
 
         var label = document.createElement('label')
@@ -163,6 +188,20 @@ PostBundle.prototype.setTags = function(order) {
         theDiv.appendChild(checkbox);
         theDiv.appendChild(document.createTextNode(d));
     })
+}
+
+PostBundle.prototype.searchTags = function(str) {
+    var vis = this;
+    // var matchTags = [];
+    // var leftTags = [...vis.tagsByAlpha];
+    vis.matchTags = vis.tagsByAlpha.filter(function(value) {
+        return value.includes(str);
+    });
+    var leftTags = vis.tagsByAlpha.filter(function(value) {
+        return !value.includes(str);
+    });
+    vis.tagsBySearch = vis.matchTags.concat(leftTags);
+    vis.setTags("search");
 }
 
 

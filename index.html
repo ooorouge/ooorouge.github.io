@@ -334,13 +334,20 @@
         <div class="col-2" >
             <div id="select-instr">
                 <h4>Choose your tags</h4>
-                <button id="submit-tags">Clear All</button>
+<!--                <button id="submit-tags" class="btn btn-outline-primary" type="button">Clear All</button>-->
                 <div>
                     Sort by <select id="order" onchange="changeOrder(this)">
-                        <option value="freq" selected="selected">Frequency</option>
-                        <option value="alpha">Alphabetic</option>
+                        <option id="freq" value="freq" selected="selected">Frequency</option>
+                        <option id="alpha" value="alpha">Alphabetic</option>
+                        <option id="selected" value="selected">Checked Tags</option>
+                        <option id="search-results" value="search-results">Search Results</option>
                     </select>
                 </div>
+<!--                <div class="row">-->
+                    <input id="search-input" type="text" placeholder="TagName in lowercase">
+                    <button id="search-tags" class="btn btn-outline-primary" type="button" onclick="searchTags()">Search</button>
+                <button id="submit-tags" class="btn btn-outline-primary" type="button">Clear All Tags</button>
+<!--                </div>-->
             </div>
             <div id="tags-area">
 
