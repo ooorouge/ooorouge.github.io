@@ -74,5 +74,5 @@ This interface was completed by three logical parts: map, tag, trend and a few u
 
 ## Cite
 
-* To draw the arrow on the post edge bundling chart, I used the code from: https://stackoverflow.com/questions/11254806/interpolate-line-to-make-a-half-circle-arc-in-d3
-
+* To draw the arrow on the post edge bundling chart, I used the code from: https://stackoverflow.com/questions/11254806/interpolate-line-to-make-a-half-circle-arc-in-d3.  
+* Simulate a click event to make the tag page show 2020 data by default. Resource: https://www.geeksforgeeks.org/how-to-simulate-a-click-with-javascript/.  
