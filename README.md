@@ -5,6 +5,23 @@ Final Project for CSE457A, url to our project: [Evolution of Stack Overflow](htt
 
 We create a visualization that introduced the evolution of Stack Overflow which is a question and answer site for professional and enthusiast programmers. To show the evolution of Stack Overflow, we split it into three parts: users' information, 70 most popular tags used to describe questions and trends of 200 most popular tags over the years
 
+## Non-obvious features
+
+### Instruction
+
+* You can click on *INSTRUCTIONS* on nav bar to review it  again
+* You can move your mouse on ⓘ to see specific explanations of charts
+* You can click on a button at the end of "Select a year, explore popular tags and the associated tag combinations in posts" to learn how to explore tags
+
+### Tag
+
+* You can move your mouse on either circles on the left chart or names on the right chart to highlight the tag you are interested in
+
+### Trend
+
+* You can sort tags
+* You can search tags that you are interested in
+
 ## Code
 
 This project is driven by javascript and a few data processing scripts
