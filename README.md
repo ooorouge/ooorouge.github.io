@@ -3,7 +3,7 @@ Final Project for CSE457A, url to our project: [Evolution of Stack Overflow](htt
 
 ## Overview
 
-We create a visualization that introduced the evolution of Stack Overflow which is a question and answer site for professional and enthusiast programmers. To show the evolution of Stack Overflow, we split it into three parts: users' information, tags used to describe questions and trends of tags.
+We create a visualization that introduced the evolution of Stack Overflow which is a question and answer site for professional and enthusiast programmers. To show the evolution of Stack Overflow, we split it into three parts: users' information, 70 most popular tags used to describe questions and trends of 200 most popular tags.
 
 ## Code
 
@@ -27,8 +27,8 @@ This interface was completed by three logical parts: map, tag, trend and a few u
 
 * [tagMain.js](https://github.com/ooorouge/ooorouge.github.io/blob/main/js/tagMain.js): Init charts for tags
 * [edgeBundlingChart.js](https://github.com/ooorouge/ooorouge.github.io/blob/main/js/edgeBundlingChart.js): Shows the connections between tags
-* [tagForceChart.js](https://github.com/ooorouge/ooorouge.github.io/blob/main/js/tagForceChart.js): Add force effects on circles
-* [postYearChart.js](https://github.com/ooorouge/ooorouge.github.io/blob/main/js/postYearChart.js): Shows the 20 most popular tags of a specific year in the format of circles
+* [tagForceChart.js](https://github.com/ooorouge/ooorouge.github.io/blob/main/js/tagForceChart.js): Shows the 70 most popular tags of a specific year in the format of circles
+* [postYearChart.js](https://github.com/ooorouge/ooorouge.github.io/blob/main/js/postYearChart.js): Draws the selector of tag charts
 
 #### Trend
 
