@@ -3,7 +3,7 @@ Final Project for CSE457A, url to our project: [Evolution of Stack Overflow](htt
 
 ## Overview
 
-We create a visualization that introduced the evolution of Stack Overflow which is a question and answer site for professional and enthusiast programmers. To show the evolution of Stack Overflow, we split it into three parts: users' information, 70 most popular tags used to describe questions and trends of 200 most popular tags over the years.
+We create a visualization that introduced the evolution of Stack Overflow which is a question and answer site for professional and enthusiast programmers. To show the evolution of Stack Overflow, we split it into three parts: users' information, 70 most popular tags used to describe questions and trends of 200 most popular tags over the years
 
 ## Code
 
@@ -74,5 +74,5 @@ This interface was completed by three logical parts: map, tag, trend and a few u
 
 ## Cite
 
-* To draw the arrow on the post edge bundling chart, I used the code from: https://stackoverflow.com/questions/11254806/interpolate-line-to-make-a-half-circle-arc-in-d3.  
+* To draw the arrow on the post edge bundling chart, I used the code from: https://stackoverflow.com/questions/11254806/interpolate-line-to-make-a-half-circle-arc-in-d3
 
