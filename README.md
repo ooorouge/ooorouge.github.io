@@ -1,5 +1,8 @@
 # ooorouge.github.io
+
 Final Project for CSE457A, url to our project: [Evolution of Stack Overflow](https://washuvis.github.io/stackoverflow/)
+
+We put the link to our video onto nav bar and our embedded video walkthrough into process book.
 
 ## Overview
 
