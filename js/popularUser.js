@@ -41,6 +41,17 @@ PopularUserChart.prototype.initVis = function() {
 	.attr("font-weight", "normal")
 	.attr("text-anchor", "middle")
 	.text("Reputation");
+
+
+	vis.svg.append("text")
+		.attr("class", "label")
+		.attr("x", -10)
+		.attr("y", -5)
+		.attr("fill", "black")
+		.attr("font-size", 12)
+		.attr("font-weight", "normal")
+		.attr("text-anchor", "middle")
+		.text("Username");
 }
 
 PopularUserChart.prototype.wrangleData = function(year) {
